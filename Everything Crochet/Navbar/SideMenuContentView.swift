@@ -29,11 +29,9 @@ struct SideMenuContentView: View {
                     )
                 }
                 
-
                 Spacer()
             }
             .padding()
         }
-
     }
 }

@@ -14,34 +14,36 @@ enum MainContent: CaseIterable{
 }
 
 struct MainView: View {
-    @State private var presentSideMenu = false
-    @State private var currentContent: MainContent = .contents
+    @State var presentSideMenu = false
+    @State var currentContent: MainContent = .contents
         
     var body: some View {
         ZStack {
-            NavbarView(presentSideMenu: $presentSideMenu)
-            
-            switch currentContent {
-                case .contents:
-                    ContentView(presentSideMenu: $presentSideMenu)
-                case .projects:
-                    ProjectsView()
-                case .patterns:
-                    ContentView(presentSideMenu: $presentSideMenu)
-                case .stash:
-                    ContentView(presentSideMenu: $presentSideMenu)
-                case .wips:
-                    ContentView(presentSideMenu: $presentSideMenu)
-                case .stitches:
-                    ContentView(presentSideMenu: $presentSideMenu)
-                case .wishlist:
-                    ContentView(presentSideMenu: $presentSideMenu)
-                case .statistics:
-                    ContentView(presentSideMenu: $presentSideMenu)
-                case .achievements:
-                    ContentView(presentSideMenu: $presentSideMenu)
-                case .timeline:
-                    ContentView(presentSideMenu: $presentSideMenu)
+            VStack {
+                NavbarView(presentSideMenu: $presentSideMenu)
+                
+                switch currentContent {
+                    case .contents:
+                        ContentView(presentSideMenu: $presentSideMenu, currentContent: $currentContent).frame(maxWidth: .infinity, maxHeight: .infinity)
+                    case .projects:
+                        ProjectsView().frame(maxWidth: .infinity, maxHeight: .infinity)
+                    case .patterns:
+                        NothingHereYetView().frame(maxWidth: .infinity, maxHeight: .infinity)
+                    case .stash:
+                        NothingHereYetView().frame(maxWidth: .infinity, maxHeight: .infinity)
+                    case .wips:
+                        NothingHereYetView().frame(maxWidth: .infinity, maxHeight: .infinity)
+                    case .stitches:
+                        NothingHereYetView().frame(maxWidth: .infinity, maxHeight: .infinity)
+                    case .wishlist:
+                        NothingHereYetView().frame(maxWidth: .infinity, maxHeight: .infinity)
+                    case .statistics:
+                        NothingHereYetView().frame(maxWidth: .infinity, maxHeight: .infinity)
+                    case .achievements:
+                        NothingHereYetView().frame(maxWidth: .infinity, maxHeight: .infinity)
+                    case .timeline:
+                        NothingHereYetView().frame(maxWidth: .infinity, maxHeight: .infinity)
+                }
             }
             
             SideMenuView(

@@ -12,15 +12,11 @@ struct MenuButtonView: View {
                 currentContent = content
                 presentSideMenu = false
             } label: {
-                Text("_\(content)".dropFirst(1).uppercased())
+                Text("\(content)".uppercased())
                     .tint(Color.background)
             }.padding(.bottom, 8)
             
             Spacer()
         }
     }
-}
-
-#Preview {
-    MenuButtonView(content: .contents, presentSideMenu: .constant(true), currentContent: .constant(.contents))
 }
