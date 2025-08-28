@@ -18,7 +18,6 @@ struct NavbarView: View {
                     Spacer()
                 }
             }
-            .padding()
             
             VStack {
                 HStack {
