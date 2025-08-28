@@ -1,5 +1,5 @@
 //
-//  ContentView.swift
+//  SideMenuContentView.swift
 //  Everything Crochet
 //
 //  Created by Katharina Weinberger on 28.08.25.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct ContentView: View {
+struct SideMenuContentView: View {
     
     @Binding var presentSideMenu: Bool
     
@@ -17,19 +17,13 @@ struct ContentView: View {
                 Button  {
                     presentSideMenu.toggle()
                 } label: {
-                    Image(systemName: "line.horizontal.3")
+                    Image(systemName: "multiply")
                         .imageScale(.large)
                         .foregroundStyle(.tint)
                 }
-                Spacer()
-                Text("Everything Crochet")
                 Spacer()
             }.frame(maxHeight: .infinity, alignment: .top)
         }
         .padding()
     }
-}
-
-#Preview {
-    ContentView(presentSideMenu: .constant(false))
 }

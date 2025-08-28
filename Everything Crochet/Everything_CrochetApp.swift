@@ -11,7 +11,7 @@ import SwiftUI
 struct Everything_CrochetApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            ContentView(presentSideMenu: .constant(false))
         }
     }
 }
