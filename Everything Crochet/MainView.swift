@@ -10,7 +10,6 @@ enum MainContent: CaseIterable{
     case wishlist
     case statistics
     case achievements
-    case timeline
 }
 
 struct MainView: View {
@@ -40,8 +39,6 @@ struct MainView: View {
                     case .statistics:
                         NothingHereYetView().frame(maxWidth: .infinity, maxHeight: .infinity)
                     case .achievements:
-                        NothingHereYetView().frame(maxWidth: .infinity, maxHeight: .infinity)
-                    case .timeline:
                         NothingHereYetView().frame(maxWidth: .infinity, maxHeight: .infinity)
                 }
             }

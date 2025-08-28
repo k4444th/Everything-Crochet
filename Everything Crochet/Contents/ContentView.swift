@@ -27,7 +27,6 @@ struct ContentView: View {
                             case .wishlist: return "heart"
                             case .statistics: return "chart.bar"
                             case .achievements: return "star"
-                            case .timeline: return "clock"
                             }
                         }
                         
