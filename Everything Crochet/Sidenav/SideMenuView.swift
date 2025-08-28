@@ -10,7 +10,7 @@ struct SideMenuView: View {
     var body: some View {
             ZStack() {
                 if (isShowing) {
-                    Color.white
+                    Color.accent
                         .ignoresSafeArea()
                         .onTapGesture {
                             isShowing.toggle()
@@ -23,7 +23,6 @@ struct SideMenuView: View {
                 }
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .bottom)
-            // .ignoresSafeArea()
             .animation(.easeInOut, value: isShowing)
         }
 }

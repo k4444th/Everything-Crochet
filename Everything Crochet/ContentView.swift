@@ -1,10 +1,3 @@
-//
-//  ContentView.swift
-//  Everything Crochet
-//
-//  Created by Katharina Weinberger on 28.08.25.
-//
-
 import SwiftUI
 
 struct ContentView: View {
@@ -13,18 +6,7 @@ struct ContentView: View {
     
     var body: some View {
         VStack {
-            HStack {
-                Button  {
-                    presentSideMenu.toggle()
-                } label: {
-                    Image(systemName: "line.horizontal.3")
-                        .imageScale(.large)
-                        .foregroundStyle(.tint)
-                }
-                Spacer()
-                Text("Everything Crochet")
-                Spacer()
-            }.frame(maxHeight: .infinity, alignment: .top)
+            Text("Content View")
         }
         .padding()
     }

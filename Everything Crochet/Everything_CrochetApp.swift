@@ -1,10 +1,3 @@
-//
-//  Everything_CrochetApp.swift
-//  Everything Crochet
-//
-//  Created by Katharina Weinberger on 28.08.25.
-//
-
 import SwiftUI
 
 @main
