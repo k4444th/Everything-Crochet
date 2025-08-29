@@ -8,8 +8,8 @@ extension Color {
 struct ColorTheme {
     let accent = Color("AccentColor")
     let background = Color("BackgroundColor")
-    let primary = Color("PrimaryColor")
-    let secondary = Color("SecondaryColor")
-    let tertiary = Color("TertiaryColor")
-    let complementary = Color("ComplementaryColor")
+    let appPrimary = Color("AppPrimaryColor")
+    let appSecondary = Color("AppSecondaryColor")
+    let appSecondary2 = Color("AppSecondary2Color")
+    let appComplementary = Color("AppComplementaryColor")
 }

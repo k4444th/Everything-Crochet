@@ -17,9 +17,6 @@ struct SideMenuView: View {
                         }
                     content
                         .transition(edgeTransition)
-                        .background(
-                            Color.clear
-                        )
                 }
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .bottom)

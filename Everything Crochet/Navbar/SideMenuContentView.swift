@@ -8,6 +8,8 @@ struct SideMenuContentView: View {
     
     var body: some View {
         ZStack {
+            Color.appSecondary
+                .ignoresSafeArea()
             VStack {
                 HStack {
                     Button  {
@@ -34,4 +36,8 @@ struct SideMenuContentView: View {
             .padding()
         }
     }
+}
+
+#Preview {
+    SideMenuContentView(presentSideMenu: .constant(false), currentContent: .constant(.contents))
 }

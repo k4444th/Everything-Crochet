@@ -19,7 +19,7 @@ struct MainView: View {
     var body: some View {
         ZStack {
             VStack {
-                NavbarView(presentSideMenu: $presentSideMenu)
+                NavbarView(presentSideMenu: $presentSideMenu, currentContent: $currentContent)
                 
                 switch currentContent {
                     case .contents:
