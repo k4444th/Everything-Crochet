@@ -14,7 +14,7 @@ struct ProgressView: View {
                         .fill(Color.appPrimary)
                         .frame(width: geo.size.width * CGFloat(Double(progress[0]) / Double(progress[1])), height: 10)
                 }
-            }.frame(width: .infinity, height: 10)
+            }.frame(height: 10) .frame(maxWidth: .infinity)
             
             Text(String(progress[0]) + "/" + String(progress[1]))
         }
