@@ -23,15 +23,19 @@ struct SideMenuContentView: View {
                     Spacer()
                 }.frame(alignment: .top).padding(.bottom, 24)
                 
-                ForEach(MainContent.allCases, id: \.self) { contentName in
-                    MenuButtonView(
-                        content: contentName,
-                        presentSideMenu: $presentSideMenu,
-                        currentContent: $currentContent
-                    )
+                VStack {
+                    ForEach(MainContent.allCases, id: \.self) { contentName in
+                        if contentName.title != "" {
+                            MenuButtonView(
+                                content: contentName.title,
+                                link: contentName,
+                                presentSideMenu: $presentSideMenu,
+                                currentContent: $currentContent
+                            )
+                        }
+                    }
+                    Spacer()
                 }
-                
-                Spacer()
             }
             .padding()
         }

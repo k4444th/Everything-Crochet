@@ -3,6 +3,7 @@ import SwiftUI
 enum MainContent: CaseIterable{
     case contents
     case projects
+    case project_detail
     case patterns
     case stash
     case wips
@@ -10,6 +11,21 @@ enum MainContent: CaseIterable{
     case wishlist
     case statistics
     case achievements
+    
+    var title: String {
+        switch self {
+            case .contents: return "Contents"
+            case .projects: return "Projects"
+            case .project_detail: return ""
+            case .patterns: return "Patterns"
+            case .stash: return "Stash"
+            case .wips: return "WIPs"
+            case .stitches: return "Stitches"
+            case .wishlist: return "Wishlist"
+            case .statistics: return "Statistics"
+            case .achievements: return "Achievements"
+        }
+    }
 }
 
 struct MainView: View {
@@ -25,7 +41,9 @@ struct MainView: View {
                     case .contents:
                         ContentView(presentSideMenu: $presentSideMenu, currentContent: $currentContent).frame(maxWidth: .infinity, maxHeight: .infinity)
                     case .projects:
-                        ProjectsView().frame(maxWidth: .infinity, maxHeight: .infinity)
+                        ProjectsView(currentContent: $currentContent).frame(maxWidth: .infinity, maxHeight: .infinity)
+                    case .project_detail:
+                        ProjectDetailView().frame(maxWidth: .infinity, maxHeight: .infinity)
                     case .patterns:
                         NothingHereYetView().frame(maxWidth: .infinity, maxHeight: .infinity)
                     case .stash:

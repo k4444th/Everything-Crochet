@@ -24,7 +24,7 @@ struct NavbarView: View {
                 HStack {
                     Spacer()
                     
-                    Text("\(currentContent)".uppercased()).foregroundColor(Color.background).fontWeight(.bold)
+                    Text("\(currentContent)".uppercased().replacingOccurrences(of: "_", with: " ")).foregroundColor(Color.background).fontWeight(.bold)
                     
                     // Text("Everything Crochet").foregroundColor(Color.background).font(.title2)
                     
@@ -36,8 +36,4 @@ struct NavbarView: View {
             .padding()
         }.padding(.horizontal) .frame(height: 50) .background(Color.appPrimary)
     }
-}
-
-#Preview {
-    NavbarView(presentSideMenu: .constant(false), currentContent: .constant(.contents))
 }

@@ -1,15 +1,13 @@
 import SwiftUI
 
 struct ProjectsView: View {
+    
+    @Binding var currentContent: MainContent
+    
     var body: some View {
         ScrollView {
             VStack {
-                ProjectCardView()
-                ProjectCardView()
-                ProjectCardView()
-                ProjectCardView()
-                ProjectCardView()
-                ProjectCardView()
+                ProjectCardView(currentContent: $currentContent)
             }
             .padding()
         }
@@ -17,5 +15,5 @@ struct ProjectsView: View {
 }
 
 #Preview {
-    ProjectsView()
+    ProjectsView(currentContent: .constant(.contents))
 }

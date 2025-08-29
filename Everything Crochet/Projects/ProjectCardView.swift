@@ -1,8 +1,13 @@
 import SwiftUI
 
 struct ProjectCardView: View {
+    
+    @Binding var currentContent: MainContent
+    
     var body: some View {
-        Button() {} label: {
+        Button{
+            currentContent = .project_detail
+        } label: {
             ZStack {
                 RoundedRectangle(cornerRadius: 25) .foregroundColor(.clear) .background(
                     RoundedRectangle(cornerRadius: 20)
@@ -24,5 +29,5 @@ struct ProjectCardView: View {
 }
 
 #Preview {
-    ProjectCardView()
+    ProjectCardView(currentContent: .constant(.contents))
 }

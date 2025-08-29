@@ -2,14 +2,15 @@ import SwiftUI
 
 struct MenuButtonView: View {
     
-    @State var content: MainContent
+    @State var content: String
+    @State var link: MainContent
     @Binding var presentSideMenu: Bool
     @Binding var currentContent: MainContent
     
     var body: some View {
         HStack {
             Button() {
-                currentContent = content
+                currentContent = link
                 presentSideMenu = false
             } label: {
                 Text("\(content)".uppercased())
