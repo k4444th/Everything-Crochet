@@ -8,7 +8,7 @@ struct DetailsView: View {
     @State  var difficulty = "medium"
     
     var body: some View {
-        VStack(alignment: .leading, spacing: 6) {
+        VStack(alignment: .leading) {
             Text("Details:").font(.title2).padding(.vertical, 8)
             
             HStack {

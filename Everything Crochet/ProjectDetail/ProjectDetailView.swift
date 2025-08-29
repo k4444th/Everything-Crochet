@@ -23,11 +23,13 @@ struct ProjectDetailView: View {
                                 TagView(tagName: tag, color: tagColors[index % tagColors.count])
                             }
                     }.padding(.horizontal)
-                }.padding(.bottom)
+                }
                 
-                ProgressView(progress: $progress).padding(.horizontal)
+                ProgressView(progress: $progress).padding()
                 
-                DetailsView(deadline: deadline, yarn: yarn, difficulty: difficulty).padding(.horizontal)
+                ProgressImagesView()
+                
+                // DetailsView(deadline: deadline, yarn: yarn, difficulty: difficulty).padding(.horizontal)
                 
             }
         }
