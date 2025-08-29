@@ -2,6 +2,11 @@ import SwiftUI
 
 struct ProjectDetailView: View {
     @State var progress = [24, 1008]
+    @State var progressPhotos: [URL] = [
+        URL(string: "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Placeholder_view_vector.svg/1362px-Placeholder_view_vector.svg.png"),
+         URL(string: "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Placeholder_view_vector.svg/1362px-Placeholder_view_vector.svg.png"),
+         URL(string: "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Placeholder_view_vector.svg/1362px-Placeholder_view_vector.svg.png")
+    ].compactMap { $0 }
     
     var tagColors = [Color.appPrimary, Color.appSecondary, Color.appSecondary2]
     
@@ -21,13 +26,13 @@ struct ProjectDetailView: View {
                     HStack {
                         ForEach(Array(tags.enumerated()), id: \.offset) { index, tag in
                                 TagView(tagName: tag, color: tagColors[index % tagColors.count])
-                            }
+                        }
                     }.padding(.horizontal)
                 }
                 
                 ProgressView(progress: $progress).padding()
                 
-                ProgressImagesView()
+                ProgressPhotosView(images: $progressPhotos)
                 
                 // DetailsView(deadline: deadline, yarn: yarn, difficulty: difficulty).padding(.horizontal)
                 
