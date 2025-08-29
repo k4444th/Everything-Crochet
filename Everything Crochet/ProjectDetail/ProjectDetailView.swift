@@ -1,6 +1,8 @@
 import SwiftUI
 
 struct ProjectDetailView: View {
+    @State var progress = [24, 1008]
+    
     var tagColors = [Color.appPrimary, Color.appSecondary, Color.appSecondary2]
     
     var projectName = "Checkered Tunesian Blanket"
@@ -12,8 +14,8 @@ struct ProjectDetailView: View {
     
     var body: some View {
         ScrollView {
-            VStack {
-                Text(projectName).font(.title).padding(.horizontal)
+            VStack (alignment: .leading, spacing: 6) {
+                Text(projectName).font(.title).padding()
                 
                 ScrollView (.horizontal) {
                     HStack {
@@ -21,7 +23,9 @@ struct ProjectDetailView: View {
                                 TagView(tagName: tag, color: tagColors[index % tagColors.count])
                             }
                     }.padding(.horizontal)
-                }
+                }.padding(.bottom)
+                
+                ProgressView(progress: $progress).padding(.horizontal)
                 
                 DetailsView(deadline: deadline, yarn: yarn, difficulty: difficulty).padding(.horizontal)
                 
