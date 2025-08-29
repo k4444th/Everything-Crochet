@@ -12,36 +12,41 @@ struct DetailsView: View {
         VStack(alignment: .leading) {
             Text("Details:").font(.title2).padding(.vertical, 8)
             
-            HStack {
-                VStack (alignment: .center, spacing: 8) {
-                    Image(systemName: "hammer")
-                            .imageScale(.large)
-                            .foregroundColor(Color.accent).padding(.bottom, 8)
-                    
-                    Image(systemName: "scissors")
-                            .imageScale(.large)
-                            .foregroundColor(Color.accent).padding(.bottom, 8)
-                    
-                    Image(systemName: "clock")
-                            .imageScale(.large)
-                            .foregroundColor(Color.accent).padding(.bottom, 8)
-                    
-                    Image(systemName: "calendar")
+            let columns = [
+                GridItem(.fixed(30)),
+                GridItem(.flexible())
+            ]
+            
+            LazyVGrid(columns: columns, alignment: .leading) {
+                Image(systemName: "hammer")
                         .imageScale(.large)
                         .foregroundColor(Color.accent).padding(.bottom, 8)
-                }
                 
-                VStack (alignment: .leading, spacing: 8) {
-                    Text("Techniques: \(techniques.joined(separator: ", "))").padding(.bottom, 8)
-                    
-                    Text("Yarn: \(yarn.joined(separator: ", "))").padding(.bottom, 8).padding(.bottom, 8)
-                    
-                    Text("Start: " + startdate + " - End: " + enddate).padding(.bottom, 8)
-                    
-                    Text("Deadline: " + deadline).padding(.bottom, 8)
-                }
+                Text("Techniques: \(techniques.joined(separator: ", "))").padding(.bottom, 8)
+                
+                Image(systemName: "scissors")
+                        .imageScale(.large)
+                        .foregroundColor(Color.accent).padding(.bottom, 8)
+                
+                Text("Yarn: \(yarn.joined(separator: ", "))").padding(.bottom, 8).padding(.bottom, 8)
+                
+                Image(systemName: "clock")
+                        .imageScale(.large)
+                        .foregroundColor(Color.accent).padding(.bottom, 8)
+                
+                Text("Start: " + startdate + " - End: " + enddate).padding(.bottom, 8)
+                
+                Image(systemName: "calendar")
+                    .imageScale(.large)
+                    .foregroundColor(Color.accent).padding(.bottom, 8)
+                
+                Text("Deadline: " + deadline).padding(.bottom, 8)
             }
-            
         }.frame(maxWidth: .infinity, alignment: .leading)
     }
+}
+
+
+#Preview {
+    DetailsView(techniques: .constant(["Tunesian Crochet"]), startdate: .constant("21.05.2025"), enddate: .constant("-"), deadline: .constant("15.3.2026"), yarn: .constant(["Gründl Lisa Premium"]))
 }
