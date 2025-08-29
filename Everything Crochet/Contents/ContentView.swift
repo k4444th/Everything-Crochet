@@ -8,6 +8,9 @@ struct ContentView: View {
     var body: some View {
         VStack {
             ScrollView {
+                
+                
+                
                 let columns = [
                     GridItem(.flexible()),
                     GridItem(.flexible())
@@ -38,6 +41,7 @@ struct ContentView: View {
                     }
                 }
                 .padding()
+                .padding(.vertical, 16)
             }
         }
     }
