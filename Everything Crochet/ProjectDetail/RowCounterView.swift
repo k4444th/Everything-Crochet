@@ -2,7 +2,8 @@ import SwiftUI
 
 struct RowCounterView: View {
     
-    @Binding var row: Int
+    @Binding var progress: [Int]
+    @Binding var editMode: Bool
     
     var body: some View {
         VStack(alignment: .leading) {
@@ -11,12 +12,14 @@ struct RowCounterView: View {
                 Spacer()
             }
             
+            ProgressView(progress: $progress, editMode: $editMode).padding(.horizontal)
+            
             HStack(spacing: 40) {
                 Spacer()
                 Button {
-                    if row > 0 {
+                    if progress[0] > 0 {
                         print("Update row counter by -1")
-                        row -= 1
+                        progress[0] -= 1
                     }
                 } label: {
                     Image(systemName: "minus.circle.fill")
@@ -25,13 +28,13 @@ struct RowCounterView: View {
                         .foregroundColor(.appSecondary)
                 }
                 
-                Text("\(row)")
+                Text("\(progress[0])")
                     .font(.system(size: 48, weight: .bold, design: .rounded))
                     .frame(minWidth: 80)
                 
                 Button {
                     print("Update row counter by +1")
-                    row += 1
+                    progress[0] += 1
                 } label: {
                     Image(systemName: "plus.circle.fill")
                         .resizable()
@@ -46,5 +49,5 @@ struct RowCounterView: View {
 }
 
 #Preview {
-    RowCounterView(row: .constant(24))
+    RowCounterView(progress: .constant([5, 20]), editMode: .constant(false))
 }

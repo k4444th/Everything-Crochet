@@ -60,7 +60,7 @@ struct TagsView: View {
                     } .padding(.horizontal)
                 }
             }
-        } .padding(.bottom)
+        }
     }
 }
 

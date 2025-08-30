@@ -34,15 +34,13 @@ struct ProjectDetailView: View {
                 
                 TagsView(tags: $tags, editMode: $editMode)
                 
-                ProgressView(progress: $progress, editMode: $editMode).padding(.horizontal)
-                
-                GalleryView(images: $progressPhotos, editMode: $editMode)
-                
                 DetailsView(techniques: $techniques, startdate: $startdate, enddate: $enddate, deadline: $deadline, yarn: $yarn).padding(.horizontal)
                 
-                RowCounterView(row: $progress[0]).padding(.horizontal)
-                
+                RowCounterView(progress: $progress, editMode: $editMode).padding(.horizontal)
+
                 PatternView(pdfUrl: patternLink).padding(.horizontal).frame(height: 550)
+                
+                GalleryView(images: $progressPhotos, editMode: $editMode)
                 
                 NotesView(text: $notes).padding(.horizontal)
             }
