@@ -6,6 +6,8 @@ struct NavbarView: View {
     @Binding var currentContent: MainContent
     @Binding var editMode: Bool
     @Binding var editModeVisible: Bool
+    @Binding var addIconVisible: Bool
+    @Binding var addMode: Bool
     
     var body: some View {
         ZStack {
@@ -39,6 +41,16 @@ struct NavbarView: View {
                                     .imageScale(.large)
                                     .foregroundColor(Color.background)
                             }
+                        }
+                    }
+                    
+                    if addIconVisible {
+                        Button  {
+                            addMode.toggle()
+                        } label: {
+                            Image(systemName: "plus")
+                                .imageScale(.large)
+                                .foregroundColor(Color.background)
                         }
                     }
                 }

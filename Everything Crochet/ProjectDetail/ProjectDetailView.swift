@@ -3,7 +3,7 @@ import SwiftUI
 struct ProjectDetailView: View {
     @Binding var editMode: Bool
     @State var projectName: String = "Checkered Tunesian Blanket"
-    @State var tags: [String] = ["Tunesian Crochet", "Blanket"]
+    @State var tags: [String] = ["Blanket"]
     @State var techniques: [String] = ["Tunesian Crochet"]
     @State var notes: String = "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet."
     @State var startdate: String = "01.01.2025"
@@ -27,7 +27,7 @@ struct ProjectDetailView: View {
                 
                 TagsView(tags: $tags, editMode: $editMode)
                 
-                ProgressView(progress: $progress).padding(.horizontal)
+                ProgressView(progress: $progress, editMode: $editMode).padding(.horizontal)
                 
                 GalleryView(images: $progressPhotos)
                 
@@ -44,5 +44,5 @@ struct ProjectDetailView: View {
 }
 
 #Preview {
-    ProjectDetailView(editMode: .constant(true))
+    ProjectDetailView(editMode: .constant(false))
 }

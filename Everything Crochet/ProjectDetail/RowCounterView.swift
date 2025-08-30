@@ -5,10 +5,9 @@ struct RowCounterView: View {
     @Binding var row: Int
     
     var body: some View {
-        VStack() {
+        VStack(alignment: .leading) {
             HStack () {
                 Text("Row counter:").font(.title2).padding(.vertical, 8)
-                Spacer()
             }
             
             HStack(spacing: 40) {

@@ -8,11 +8,12 @@ struct TagsView: View {
     
     var body: some View {
         ScrollView (.horizontal) {
-            HStack {
+            HStack (alignment: .top) {
                 if editMode {
                     Image(systemName: "plus.circle.fill")
                         .font(.largeTitle)
                         .foregroundColor(Color.appSecondary2)
+                        .padding(.bottom, 4)
                 }
                 
                 if tags.count > 0 {
@@ -22,9 +23,9 @@ struct TagsView: View {
                     // }
                     ForEach(Array(tags.enumerated()), id: \.offset) { index, tag in
                         TagView(tagName: tag, color: Color.appSecondary)
-                    }
+                    }.padding(.bottom)
                 }
-            }.padding(.horizontal) .padding(.vertical)
+            }.padding(.horizontal)
         }.padding(.bottom)
     }
 }
