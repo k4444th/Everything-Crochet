@@ -18,7 +18,7 @@ struct SideMenuContentView: View {
                         Image(systemName: "multiply")
                             .imageScale(.large)
                             .foregroundStyle(.tint)
-                            .tint(Color.background)
+                            .tint(Color.lighter)
                     }
                     Spacer()
                 }.frame(alignment: .top).padding(.bottom, 24)

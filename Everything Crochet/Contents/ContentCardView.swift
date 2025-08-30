@@ -12,7 +12,7 @@ struct ContentCardView: View {
         } label: {
             ZStack {
                 RoundedRectangle(cornerRadius: 20)
-                    .fill(Color.background) .foregroundColor(.clear) .frame(width: 155, height: 155)
+                    .fill(Color.lighter) .foregroundColor(.clear) .frame(width: 155, height: 155)
                 
                 VStack {
                     Spacer()

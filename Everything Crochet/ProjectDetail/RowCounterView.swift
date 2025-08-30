@@ -12,7 +12,10 @@ struct RowCounterView: View {
             
             HStack(spacing: 40) {
                 Button {
-                    if row > 0 { row -= 1 }
+                    if row > 0 {
+                        print("Update row counter by -1")
+                        row -= 1
+                    }
                 } label: {
                     Image(systemName: "minus.circle.fill")
                         .resizable()
@@ -25,6 +28,7 @@ struct RowCounterView: View {
                     .frame(minWidth: 80)
                 
                 Button {
+                    print("Update row counter by +1")
                     row += 1
                 } label: {
                     Image(systemName: "plus.circle.fill")

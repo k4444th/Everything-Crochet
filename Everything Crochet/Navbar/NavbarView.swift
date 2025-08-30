@@ -18,7 +18,7 @@ struct NavbarView: View {
                     } label: {
                         Image(systemName: "line.horizontal.3")
                             .imageScale(.large)
-                            .foregroundColor(Color.background)
+                            .foregroundColor(Color.lighter)
                     }
                     
                     Spacer()
@@ -30,7 +30,7 @@ struct NavbarView: View {
                             } label: {
                                 Image(systemName: "pencil.slash")
                                     .imageScale(.large)
-                                    .foregroundColor(Color.background)
+                                    .foregroundColor(Color.lighter)
                             }
                         }
                         if !editMode {
@@ -39,7 +39,7 @@ struct NavbarView: View {
                             } label: {
                                 Image(systemName: "pencil")
                                     .imageScale(.large)
-                                    .foregroundColor(Color.background)
+                                    .foregroundColor(Color.lighter)
                             }
                         }
                     }
@@ -50,7 +50,7 @@ struct NavbarView: View {
                         } label: {
                             Image(systemName: "plus")
                                 .imageScale(.large)
-                                .foregroundColor(Color.background)
+                                .foregroundColor(Color.lighter)
                         }
                     }
                 }
@@ -60,11 +60,11 @@ struct NavbarView: View {
                 HStack {
                     Spacer()
                     
-                    Text("\(currentContent)".uppercased().replacingOccurrences(of: "_", with: " ")).foregroundColor(Color.background).fontWeight(.bold)
+                    Text("\(currentContent)".uppercased().replacingOccurrences(of: "_", with: " ")).foregroundColor(Color.lighter).fontWeight(.bold)
                     
-                    // Text("Everything Crochet").foregroundColor(Color.background).font(.title2)
+                    // Text("Everything Crochet").foregroundColor(Color.lighter).font(.title2)
                     
-                    // Image(systemName: "scissors") .imageScale(.large) .foregroundColor(Color.background)
+                    // Image(systemName: "scissors") .imageScale(.large) .foregroundColor(Color.lighter)
                     
                     Spacer()
                 }.frame(maxHeight: .infinity, alignment: .top)

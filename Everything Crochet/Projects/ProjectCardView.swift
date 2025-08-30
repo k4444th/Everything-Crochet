@@ -10,7 +10,7 @@ struct ProjectCardView: View {
         } label: {
             ZStack {
                 RoundedRectangle(cornerRadius: 20)
-                    .fill(Color.background) .foregroundColor(.clear)
+                    .fill(Color.lighter) .foregroundColor(.clear)
                 
                 VStack {
                     AsyncImage(url: URL(string: "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Placeholder_view_vector.svg/1362px-Placeholder_view_vector.svg.png")) { phase in

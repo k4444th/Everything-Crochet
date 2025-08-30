@@ -14,7 +14,7 @@ struct MenuButtonView: View {
                 presentSideMenu = false
             } label: {
                 Text("\(content)".uppercased())
-                    .tint(Color.background).font(.title2)
+                    .tint(Color.lighter).font(.title2)
             }.padding(.bottom, 8)
             
             Spacer()
