@@ -50,7 +50,7 @@ struct ProgressView: View {
                             else {
                                 showError = false
                                 progress[0] = tempProgress[0]
-                                print("Update progress to [" + String(progress[0]) + "," + String(progress[1]) + "]")
+                                print("Update progress to [" + String(progress[0]) + ", " + String(progress[1]) + "]")
                             }
                         } label: {
                             Image(systemName: "checkmark.circle.fill")
@@ -76,7 +76,7 @@ struct ProgressView: View {
                             else {
                                 showError = false
                                 progress[1] = tempProgress[1]
-                                print("Update progress to [" + String(progress[0]) + "," + String(progress[1]) + "]")
+                                print("Update progress to [" + String(progress[0]) + ", " + String(progress[1]) + "]")
                             }
                         } label: {
                             Image(systemName: "checkmark.circle.fill")

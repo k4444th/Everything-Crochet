@@ -4,15 +4,12 @@ import SwiftUI
 struct GalleryView: View {
 
     @Binding var images: [URL]
+    @Binding var editMode: Bool
     
     @State var selectedItem: PhotosPickerItem?
     
     @State var selectedImageIndex: Int = 0
     @State var showFullScreen = false
-    
-    func importImage() {
-        print("Add image to gallery")
-    }
     
     func loadImage() {
         Task {
@@ -32,6 +29,16 @@ struct GalleryView: View {
             if images.count > 0 {
                 ScrollView (.horizontal) {
                     HStack (spacing: 16) {
+                        if editMode {
+                            PhotosPicker(selection: $selectedItem) {
+                                Image(systemName: "plus.circle.fill")
+                                    .resizable()
+                                    .frame(width: 60, height: 60)
+                                    .foregroundColor(.appSecondary2)
+                                    .padding(.trailing)
+                            } .padding(.leading) .onChange(of: selectedItem, loadImage)
+                            
+                        }
                         ForEach(Array(images.enumerated()), id: \.offset) { index, imageUrl in
                             Button() {
                                 selectedImageIndex = index
@@ -45,13 +52,6 @@ struct GalleryView: View {
                                 }
                             }
                         }
-                        PhotosPicker(selection: $selectedItem) {
-                            Image(systemName: "plus.circle.fill")
-                                .resizable()
-                                .frame(width: 60, height: 60)
-                                .foregroundColor(.appSecondary2)
-                                .padding(.trailing)
-                        } .padding(.horizontal) .onChange(of: selectedItem, loadImage)
                     }.padding(.horizontal)
                 }
             }
@@ -95,6 +95,5 @@ struct GalleryView: View {
 }
 
 #Preview {
-    GalleryView(images: .constant([URL(string: "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Placeholder_view_vector.svg/1362px-Placeholder_view_vector.svg.png"), URL(string: "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Placeholder_view_vector.svg/1362px-Placeholder_view_vector.svg.png"), URL(string: "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Placeholder_view_vector.svg/1362px-Placeholder_view_vector.svg.png"),
-    ].compactMap { $0 }), selectedImageIndex: 0, showFullScreen: false)
+    GalleryView(images: .constant([URL(string: "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Placeholder_view_vector.svg/1362px-Placeholder_view_vector.svg.png"), URL(string: "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Placeholder_view_vector.svg/1362px-Placeholder_view_vector.svg.png"), URL(string: "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Placeholder_view_vector.svg/1362px-Placeholder_view_vector.svg.png")].compactMap { $0 }), editMode: .constant(true), selectedImageIndex: 0, showFullScreen: false)
 }
