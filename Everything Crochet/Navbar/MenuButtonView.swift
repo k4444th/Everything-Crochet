@@ -21,3 +21,12 @@ struct MenuButtonView: View {
         }
     }
 }
+
+#Preview {
+    MenuButtonView(
+        content: "projects",
+        link: .projects,
+        presentSideMenu: .constant(false),
+        currentContent: .constant(.contents)
+    )
+}

@@ -23,3 +23,7 @@ struct SideMenuView: View {
             .animation(.easeInOut, value: isShowing)
         }
 }
+
+#Preview {
+    SideMenuView(isShowing: .constant(true), content: AnyView(SideMenuContentView(presentSideMenu: .constant(false), currentContent: .constant(.contents))))
+}

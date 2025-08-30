@@ -62,14 +62,14 @@ struct NavbarView: View {
                     
                     Text("\(currentContent)".uppercased().replacingOccurrences(of: "_", with: " ")).foregroundColor(Color.lighter).fontWeight(.bold)
                     
-                    // Text("Everything Crochet").foregroundColor(Color.lighter).font(.title2)
-                    
-                    // Image(systemName: "scissors") .imageScale(.large) .foregroundColor(Color.lighter)
-                    
                     Spacer()
                 }.frame(maxHeight: .infinity, alignment: .top)
             }
             .padding()
         }.padding(.horizontal) .frame(height: 50) .background(Color.appPrimary)
     }
+}
+
+#Preview {
+    NavbarView(presentSideMenu: .constant(false), currentContent: .constant(.contents), editMode: .constant(false), editModeVisible: .constant(false), addIconVisible: .constant(false), addMode: .constant(false))
 }
