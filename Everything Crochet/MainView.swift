@@ -31,33 +31,56 @@ enum MainContent: CaseIterable{
 struct MainView: View {
     @State var presentSideMenu = false
     @State var currentContent: MainContent = .contents
+    @State var editModeVisible: Bool = false
+    @State var editMode: Bool = false
         
     var body: some View {
         ZStack {
             VStack (spacing: 0) {
-                NavbarView(presentSideMenu: $presentSideMenu, currentContent: $currentContent)
+                NavbarView(presentSideMenu: $presentSideMenu, currentContent: $currentContent, editMode: $editMode, editModeVisible: $editModeVisible)
                 
                 switch currentContent {
                     case .contents:
-                        ContentView(presentSideMenu: $presentSideMenu, currentContent: $currentContent).frame(maxWidth: .infinity, maxHeight: .infinity)
+                        ContentView(presentSideMenu: $presentSideMenu, currentContent: $currentContent).frame(maxWidth: .infinity, maxHeight: .infinity).onAppear {
+                                editModeVisible = false
+                            }
                     case .projects:
-                        ProjectsView(currentContent: $currentContent).frame(maxWidth: .infinity, maxHeight: .infinity)
+                        ProjectsView(currentContent: $currentContent).frame(maxWidth: .infinity, maxHeight: .infinity) .onAppear {
+                                editModeVisible = false
+                            }
                     case .project_detail:
-                        ProjectDetailView().frame(maxWidth: .infinity, maxHeight: .infinity)
+                    ProjectDetailView(editMode: $editMode).frame(maxWidth: .infinity, maxHeight: .infinity)
+                        .onAppear {
+                                editModeVisible = true
+                            }
                     case .patterns:
-                        NothingHereYetView().frame(maxWidth: .infinity, maxHeight: .infinity)
+                        NothingHereYetView().frame(maxWidth: .infinity, maxHeight: .infinity) .onAppear {
+                                editModeVisible = false
+                            }
                     case .stash:
-                        NothingHereYetView().frame(maxWidth: .infinity, maxHeight: .infinity)
+                        NothingHereYetView().frame(maxWidth: .infinity, maxHeight: .infinity).onAppear {
+                                editModeVisible = false
+                            }
                     case .wips:
-                        NothingHereYetView().frame(maxWidth: .infinity, maxHeight: .infinity)
+                        NothingHereYetView().frame(maxWidth: .infinity, maxHeight: .infinity).onAppear {
+                                editModeVisible = false
+                            }
                     case .stitches:
-                        NothingHereYetView().frame(maxWidth: .infinity, maxHeight: .infinity)
+                        NothingHereYetView().frame(maxWidth: .infinity, maxHeight: .infinity).onAppear {
+                                editModeVisible = false
+                            }
                     case .wishlist:
-                        NothingHereYetView().frame(maxWidth: .infinity, maxHeight: .infinity)
+                        NothingHereYetView().frame(maxWidth: .infinity, maxHeight: .infinity).onAppear {
+                                editModeVisible = false
+                            }
                     case .statistics:
-                        NothingHereYetView().frame(maxWidth: .infinity, maxHeight: .infinity)
+                        NothingHereYetView().frame(maxWidth: .infinity, maxHeight: .infinity).onAppear {
+                                editModeVisible = false
+                            }
                     case .achievements:
-                        NothingHereYetView().frame(maxWidth: .infinity, maxHeight: .infinity)
+                        NothingHereYetView().frame(maxWidth: .infinity, maxHeight: .infinity).onAppear {
+                                editModeVisible = false
+                            }
                 }
             }
             

@@ -42,7 +42,7 @@ struct DetailsView: View {
                 
                 Text("Deadline: " + deadline).padding(.bottom, 8)
             }
-        }.frame(maxWidth: .infinity, alignment: .leading)
+        }.frame(maxWidth: .infinity, alignment: .leading) .padding(.bottom)
     }
 }
 

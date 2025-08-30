@@ -1,43 +1,35 @@
 import SwiftUI
 
 struct ProjectDetailView: View {
-    @State var techniques = ["Tunesian Crochet"]
-    @State var notes = ""
-    @State var startdate = "01.01.2025"
-    @State var enddate = "-"
-    @State var deadline = "01.01.2026"
-    @State var yarn = ["Gründl: Lisa Premium"]
-    @State var patternLink = "https://www.antennahouse.com/hubfs/xsl-fo-sample/pdf/basic-link-1.pdf"
+    @Binding var editMode: Bool
+    @State var projectName: String = "Checkered Tunesian Blanket"
+    @State var tags: [String] = ["Tunesian Crochet", "Blanket"]
+    @State var techniques: [String] = ["Tunesian Crochet"]
+    @State var notes: String = "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet."
+    @State var startdate: String = "01.01.2025"
+    @State var enddate: String = "-"
+    @State var deadline: String = "01.01.2026"
+    @State var yarn: [String] = ["Gründl: Lisa Premium"]
+    @State var patternLink: String = "https://www.antennahouse.com/hubfs/xsl-fo-sample/pdf/basic-link-1.pdf"
     
-    @State var progress = [24, 1008]
+    @State var progress: [Int] = [24, 80]
     @State var progressPhotos: [URL] = [
         URL(string: "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Placeholder_view_vector.svg/1362px-Placeholder_view_vector.svg.png"),
          URL(string: "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Placeholder_view_vector.svg/1362px-Placeholder_view_vector.svg.png"),
          URL(string: "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Placeholder_view_vector.svg/1362px-Placeholder_view_vector.svg.png")
     ].compactMap { $0 }
     
-    var tagColors = [Color.appPrimary, Color.appSecondary, Color.appSecondary2]
-    
-    var projectName = "Checkered Tunesian Blanket"
-    var tags = ["Tunesian Crochet", "Blanket"]
-    
-    
     var body: some View {
         ScrollView {
-            VStack (alignment: .leading, spacing: 6) {
-                Text(projectName).font(.title).padding()
+            VStack (alignment: .leading) {
+                Text(projectName).font(.title).padding(.horizontal)
                 
-                ScrollView (.horizontal) {
-                    HStack {
-                        ForEach(Array(tags.enumerated()), id: \.offset) { index, tag in
-                                TagView(tagName: tag, color: tagColors[index % tagColors.count])
-                        }
-                    }.padding(.horizontal)
-                }
                 
-                ProgressView(progress: $progress).padding()
+                TagsView(tags: $tags, editMode: $editMode)
                 
-                ProgressPhotosView(images: $progressPhotos)
+                ProgressView(progress: $progress).padding(.horizontal)
+                
+                GalleryView(images: $progressPhotos)
                 
                 DetailsView(techniques: $techniques, startdate: $startdate, enddate: $enddate, deadline: $deadline, yarn: $yarn).padding(.horizontal)
                 
@@ -46,11 +38,11 @@ struct ProjectDetailView: View {
                 PatternView(pdfUrl: patternLink).padding(.horizontal).frame(height: 550)
                 
                 NotesView(text: $notes).padding(.horizontal)
-            }
+            }.padding(.top)
         }
     }
 }
 
 #Preview {
-    ProjectDetailView()
+    ProjectDetailView(editMode: .constant(true))
 }

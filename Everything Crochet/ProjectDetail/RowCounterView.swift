@@ -35,7 +35,7 @@ struct RowCounterView: View {
                 }
             }
             
-        }.frame(maxWidth: .infinity)
+        }.frame(maxWidth: .infinity) .padding(.bottom)
     }
 }
 

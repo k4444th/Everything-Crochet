@@ -1,7 +1,7 @@
 import SwiftUI
 
-struct ProgressPhotosView: View {
-    
+struct GalleryView: View {
+
     @Binding var images: [URL]
     
     @State var selectedImageIndex: Int = 0
@@ -29,7 +29,7 @@ struct ProgressPhotosView: View {
 
                 }.padding(.horizontal)
             }
-        }.frame(maxWidth: .infinity, alignment: .leading)
+        }.frame(maxWidth: .infinity, alignment: .leading) .padding(.bottom)
         
         .fullScreenCover(isPresented: $showFullScreen) {
             ZStack(alignment: .topTrailing) {

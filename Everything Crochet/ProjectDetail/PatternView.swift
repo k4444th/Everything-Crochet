@@ -11,7 +11,7 @@ struct PatternView: View {
             
             PDFKitView(pdfUrl: pdfUrl)
             
-        }.frame(maxWidth: .infinity, alignment: .leading)
+        }.frame(maxWidth: .infinity, alignment: .leading) .padding(.bottom)
     }
 }
 

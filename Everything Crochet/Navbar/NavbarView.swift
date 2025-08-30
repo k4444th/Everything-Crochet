@@ -4,6 +4,8 @@ struct NavbarView: View {
     
     @Binding var presentSideMenu: Bool
     @Binding var currentContent: MainContent
+    @Binding var editMode: Bool
+    @Binding var editModeVisible: Bool
     
     var body: some View {
         ZStack {
@@ -16,7 +18,29 @@ struct NavbarView: View {
                             .imageScale(.large)
                             .foregroundColor(Color.background)
                     }
+                    
                     Spacer()
+                    
+                    if editModeVisible {
+                        if editMode {
+                            Button  {
+                                editMode.toggle()
+                            } label: {
+                                Image(systemName: "pencil.slash")
+                                    .imageScale(.large)
+                                    .foregroundColor(Color.background)
+                            }
+                        }
+                        if !editMode {
+                            Button  {
+                                editMode.toggle()
+                            } label: {
+                                Image(systemName: "pencil")
+                                    .imageScale(.large)
+                                    .foregroundColor(Color.background)
+                            }
+                        }
+                    }
                 }
             }
             

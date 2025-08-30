@@ -17,7 +17,7 @@ struct ProgressView: View {
             }.frame(height: 10) .frame(maxWidth: .infinity)
             
             Text(String(progress[0]) + "/" + String(progress[1]))
-        }
+        }.padding(.bottom)
     }
 }
 

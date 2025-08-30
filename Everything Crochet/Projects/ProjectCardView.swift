@@ -20,7 +20,7 @@ struct ProjectCardView: View {
                         }
                     }
                     
-                    Text("Project Name").padding()
+                    Text("Checkered Tunesian Blanket").padding()
                 }
             }.frame(width: 350, height: 200) .cornerRadius(20)
         }.padding()
