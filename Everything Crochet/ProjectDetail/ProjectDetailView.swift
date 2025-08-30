@@ -13,6 +13,7 @@ struct ProjectDetailView: View {
     @State var patternLink: String = "https://www.antennahouse.com/hubfs/xsl-fo-sample/pdf/basic-link-1.pdf"
     
     @State var progress: [Int] = [24, 80]
+//    @State var progressPhotos: [URL] = []
     @State var progressPhotos: [URL] = [
         URL(string: "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Placeholder_view_vector.svg/1362px-Placeholder_view_vector.svg.png"),
          URL(string: "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Placeholder_view_vector.svg/1362px-Placeholder_view_vector.svg.png"),

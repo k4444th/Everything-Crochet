@@ -46,52 +46,72 @@ struct MainView: View {
                 switch currentContent {
                     case .contents:
                         ContentView(presentSideMenu: $presentSideMenu, currentContent: $currentContent).frame(maxWidth: .infinity, maxHeight: .infinity).onAppear {
+                                editMode = false
+                                addMode = false
                                 editModeVisible = false
                                 addIconVisible = false
                             }
                     case .projects:
                         ProjectsView(currentContent: $currentContent).frame(maxWidth: .infinity, maxHeight: .infinity) .onAppear {
+                                editMode = false
+                                addMode = false
                                 editModeVisible = false
                                 addIconVisible = true
                             }
                     case .project_detail:
                     ProjectDetailView(editMode: $editMode).frame(maxWidth: .infinity, maxHeight: .infinity)
                         .onAppear {
+                            editMode = false
+                            addMode = false
                                 editModeVisible = true
                                 addIconVisible = false
                             }
                     case .patterns:
                         NothingHereYetView().frame(maxWidth: .infinity, maxHeight: .infinity) .onAppear {
+                                editMode = false
+                                addMode = false
                                 editModeVisible = false
                                 addIconVisible = false
                             }
                     case .stash:
                         NothingHereYetView().frame(maxWidth: .infinity, maxHeight: .infinity).onAppear {
+                                editMode = false
+                                addMode = false
                                 editModeVisible = false
                                 addIconVisible = false
                             }
                     case .wips:
                         NothingHereYetView().frame(maxWidth: .infinity, maxHeight: .infinity).onAppear {
+                                editMode = false
+                                addMode = false
                                 editModeVisible = false
                                 addIconVisible = false
                             }
                     case .stitches:
                         NothingHereYetView().frame(maxWidth: .infinity, maxHeight: .infinity).onAppear {
+                                editMode = false
+                                addMode = false
                                 editModeVisible = false
                                 addIconVisible = false
                             }
                     case .wishlist:
                         NothingHereYetView().frame(maxWidth: .infinity, maxHeight: .infinity).onAppear {
+                                editMode = false
+                                addMode = false
                                 editModeVisible = false
                                 addIconVisible = false
                             }
                     case .statistics:
                         NothingHereYetView().frame(maxWidth: .infinity, maxHeight: .infinity).onAppear {
+                                editMode = false
+                                addMode = false
                                 editModeVisible = false
                                 addIconVisible = false
                             }
                     case .achievements:
                         NothingHereYetView().frame(maxWidth: .infinity, maxHeight: .infinity).onAppear {
+                                editMode = false
+                                addMode = false
                                 editModeVisible = false
                                 addIconVisible = false
                             }
