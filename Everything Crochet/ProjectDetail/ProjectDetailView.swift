@@ -5,6 +5,7 @@ struct ProjectDetailView: View {
     @State var previewPhoto: URL? = URL(string: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQhnqZpQ6W8HhJCtjrathdXW4djHWyp9itXIg&s")
     @State var projectName: String = "Checkered Tunesian Blanket"
     @State var tags: [String] = ["Blanket"]
+    @State var parts: [String] = ["Head", "Body"]
     @State var techniques: [String] = ["Tunesian Crochet"]
     @State var notes: String = ""
     @State var startdate: String = "27.08.2025"
@@ -13,7 +14,7 @@ struct ProjectDetailView: View {
     @State var yarn: [String] = ["Gründl: Lisa Premium"]
     @State var patternLink: String = "https://www.antennahouse.com/hubfs/xsl-fo-sample/pdf/basic-link-1.pdf"
     
-    @State var progress: [Int] = [24, 80]
+    @State var progress: [[Int]] = [[24, 80], [36, 60]]
 //    @State var progressPhotos: [URL] = []
     @State var progressPhotos: [URL] = [
         URL(string: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQhnqZpQ6W8HhJCtjrathdXW4djHWyp9itXIg&s"),
@@ -36,13 +37,13 @@ struct ProjectDetailView: View {
                 
                 DetailsView(techniques: $techniques, startdate: $startdate, enddate: $enddate, deadline: $deadline, yarn: $yarn).padding(.horizontal)
                 
-                RowCounterView(progress: $progress, editMode: $editMode).padding(.horizontal)
+                RowCounterView(progress: $progress, parts: $parts, editMode: $editMode).padding(.horizontal)
 
                 PatternView(pdfUrl: patternLink).padding(.horizontal).frame(height: 550)
                 
                 GalleryView(images: $progressPhotos, editMode: $editMode)
                 
-                NotesView(text: $notes).padding(.horizontal)
+                NotesView(text: $notes, editMode: $editMode).padding(.horizontal)
             }
         }
     }

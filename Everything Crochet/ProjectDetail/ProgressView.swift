@@ -3,7 +3,8 @@ import SwiftUI
 struct ProgressView: View {
     @State var dummy: Bool = false
     @State var showError: Bool = false
-    @Binding var progress: [Int]
+    @Binding var progress: [[Int]]
+    @Binding var currentPart: Int
     @State var tempProgress: [Int] = [0,0]
     @Binding var editMode: Bool
     
@@ -12,8 +13,7 @@ struct ProgressView: View {
         formatter.numberStyle = .decimal
         return formatter
     }()
-    
-    
+
     var body: some View {
         VStack {
             HStack {
@@ -23,22 +23,22 @@ struct ProgressView: View {
                     GeometryReader { geo in
                         RoundedRectangle(cornerRadius: 5)
                             .fill(Color.appPrimary)
-                            .frame(width: geo.size.width * CGFloat(Double(progress[0]) / Double(progress[1])), height: 10)
+                            .frame(width: geo.size.width * CGFloat(progress[currentPart][0]) / CGFloat(progress[currentPart][1]), height: 10)
                     }
-                }.frame(height: 10) .frame(maxWidth: .infinity)
+                }
+                .frame(height: 10)
+                .frame(maxWidth: .infinity)
                 
-                Text(String(progress[0]) + "/" + String(progress[1]))
+                Text("\(progress[currentPart][0]) / \(progress[currentPart][1])")
             }
             
             if editMode {
-                
-                VStack () {
+                VStack {
                     HStack {
                         Text("Current row:")
-                        TextField("eg. 1", value: $tempProgress[0], formatter: formatter) .textFieldStyle(RoundedBorderTextFieldStyle())
-                        Button {
-                            tempProgress[0] = progress[0]
-                        } label: {
+                        TextField("eg. 1", value: $tempProgress[0], formatter: formatter)
+                            .textFieldStyle(RoundedBorderTextFieldStyle())
+                        Button { tempProgress[0] = progress[currentPart][0] } label: {
                             Image(systemName: "xmark.circle.fill")
                                 .font(.largeTitle)
                                 .foregroundColor(Color.appSecondary)
@@ -46,11 +46,10 @@ struct ProgressView: View {
                         Button {
                             if tempProgress[0] > tempProgress[1] {
                                 showError = true
-                            }
-                            else {
+                            } else {
                                 showError = false
-                                progress[0] = tempProgress[0]
-                                print("Update progress to [" + String(progress[0]) + ", " + String(progress[1]) + "]")
+                                progress[currentPart][0] = tempProgress[0]
+                                print("Update progress of part " + String(currentPart) + " to [\(progress[currentPart][0]), \(progress[currentPart][1])]")
                             }
                         } label: {
                             Image(systemName: "checkmark.circle.fill")
@@ -61,10 +60,9 @@ struct ProgressView: View {
                     
                     HStack {
                         Text("Total rows:")
-                        TextField("eg. 10", value: $tempProgress[1], formatter: formatter) .textFieldStyle(RoundedBorderTextFieldStyle())
-                        Button {
-                            tempProgress[1] = progress[1]
-                        } label: {
+                        TextField("eg. 10", value: $tempProgress[1], formatter: formatter)
+                            .textFieldStyle(RoundedBorderTextFieldStyle())
+                        Button { tempProgress[1] = progress[currentPart][1] } label: {
                             Image(systemName: "xmark.circle.fill")
                                 .font(.largeTitle)
                                 .foregroundColor(Color.appSecondary)
@@ -72,34 +70,27 @@ struct ProgressView: View {
                         Button {
                             if tempProgress[0] > tempProgress[1] {
                                 showError = true
-                            }
-                            else {
+                            } else {
                                 showError = false
-                                progress[1] = tempProgress[1]
-                                print("Update progress to [" + String(progress[0]) + ", " + String(progress[1]) + "]")
+                                progress[currentPart][1] = tempProgress[1]
+                                print("Update progress of part " + String(currentPart) + " to [\(progress[currentPart][0]), \(progress[currentPart][1])]")
                             }
                         } label: {
                             Image(systemName: "checkmark.circle.fill")
                                 .font(.largeTitle)
                                 .foregroundColor(Color.appSecondary2)
                         }
-                    }                }
+                    }
+                } .padding(.top)
                 
                 if showError {
-                    TagView(tagName: "Current row must be smaller or than or equal to total rows!", color: Color.appSecondary, editMode: $dummy, info: true)
-                    
+                    TagView(tagName: "Current row must be smaller or equal to total rows!", color: Color.appSecondary, editMode: $dummy, info: true)
                 }
             }
-            
-        }.padding(.bottom) .onChange(of: editMode) { oldValue, newValue in
-            if newValue {
-                tempProgress = progress
-            }
-        }
-
+        } .onChange(of: editMode, { tempProgress = progress[currentPart] }) .onChange(of: currentPart, { tempProgress = progress[currentPart] })
     }
 }
 
 #Preview {
-    ProgressView(progress: .constant([5, 20]), editMode: .constant(true))
+    ProgressView(progress: .constant([[5, 20], [36, 60]]), currentPart: .constant(0), editMode: .constant(true))
 }
