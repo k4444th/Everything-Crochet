@@ -14,18 +14,12 @@ struct TagView: View {
                     Button  {
                         print("Delete tag '" + tagName + "'")
                     } label: {
-                        Image(systemName: "multiply")
-                            .imageScale(.large)
-                            .foregroundStyle(.tint)
-                            .tint(Color.lighter)
-                            .padding(8)
-                            .background(
-                                RoundedRectangle(cornerRadius: 20)
-                                    .fill(Color.appPrimary)
-                            )
+                        Image(systemName: "xmark.circle.fill")
+                            .font(.largeTitle)
+                            .foregroundColor(Color.appSecondary)
                     }
                 }
-                Text(tagName) .foregroundColor(Color.lighter)
+                Text(tagName) .foregroundColor(Color.accent)
                     .padding(.horizontal, 16)
                     .padding(.vertical, 8)
             } .background(
@@ -37,5 +31,5 @@ struct TagView: View {
 }
 
 #Preview {
-    TagView(tagName: "Test", color: Color.appSecondary, editMode: .constant(true), info: false)
+    TagView(tagName: "Test", color: Color.lighter, editMode: .constant(true), info: false)
 }

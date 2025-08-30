@@ -8,9 +8,11 @@ struct RowCounterView: View {
         VStack(alignment: .leading) {
             HStack () {
                 Text("Row counter:").font(.title2).padding(.vertical, 8)
+                Spacer()
             }
             
             HStack(spacing: 40) {
+                Spacer()
                 Button {
                     if row > 0 {
                         print("Update row counter by -1")
@@ -36,6 +38,7 @@ struct RowCounterView: View {
                         .frame(width: 60, height: 60)
                         .foregroundColor(.appSecondary2)
                 }
+                Spacer()
             }
             
         }.frame(maxWidth: .infinity) .padding(.bottom)

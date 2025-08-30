@@ -12,7 +12,7 @@ struct ProjectCardView: View {
                 RoundedRectangle(cornerRadius: 20)
                     .fill(Color.lighter) .foregroundColor(.clear)
                 
-                VStack {
+                VStack (spacing: 0) {
                     AsyncImage(url: URL(string: "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Placeholder_view_vector.svg/1362px-Placeholder_view_vector.svg.png")) { phase in
                         if let image = phase.image {
                             image

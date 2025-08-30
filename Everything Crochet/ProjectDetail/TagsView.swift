@@ -26,7 +26,7 @@ struct TagsView: View {
                         
                         if tags.count > 0 {
                             ForEach(Array(tags.enumerated()), id: \.offset) { index, tag in
-                                TagView(tagName: tag, color: Color.appSecondary, editMode: $editMode, info: false)
+                                TagView(tagName: tag, color: Color.lighter, editMode: $editMode, info: false)
                             }.padding(.bottom)
                         }
                     }.padding(.horizontal)
