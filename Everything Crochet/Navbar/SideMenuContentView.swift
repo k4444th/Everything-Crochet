@@ -25,7 +25,7 @@ struct SideMenuContentView: View {
                 
                 VStack {
                     ForEach(MainContent.allCases, id: \.self) { contentName in
-                        if contentName.title != "" {
+                        if contentName.title.first != "(" && contentName.title.last != ")" {
                             MenuButtonView(
                                 content: contentName.title,
                                 link: contentName,

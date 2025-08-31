@@ -6,10 +6,10 @@ struct ProjectDetailView: View {
     
     @State var selectedItem: PhotosPickerItem?
     @State var previewPhoto: URL? = URL(string: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQhnqZpQ6W8HhJCtjrathdXW4djHWyp9itXIg&s")
-    @State var projectName: String = "Checkered Tunesian Blanket"
-    @State var tags: [String] = ["Blanket", "Something", "Test", "Testing"]
-    @State var parts: [String] = ["Head", "Body"]
-    @State var techniques: String = "Tunesian Crochet"
+    @State var projectName: String = "Karierte Tunesische Decke"
+    @State var tags: [String] = ["Decke", "Tunesisch Häkeln"]
+    @State var parts: [String] = ["Decke"]
+    @State var techniques: String = "Tunesisch Häkeln"
     @State var notes: String = ""
     @State var startdate: String = "27.08.2025"
     @State var enddate: String = "-"
@@ -66,6 +66,8 @@ struct ProjectDetailView: View {
                         PatternEditModeView(pdfUrl: patternLink).frame(height: 250)
                         
                         GalleryEditModeView(images: $progressPhotos)
+                        
+                        DeleteEditModeView()
                         
                     } .padding(.horizontal)
                 }

@@ -23,7 +23,7 @@ struct ContentCardView: View {
                     
                     Spacer()
                     
-                    Text("\(content)".uppercased())
+                    Text("\(content.title)".uppercased())
                     
                     Spacer()
                 }

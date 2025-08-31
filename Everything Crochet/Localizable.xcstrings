@@ -1,0 +1,398 @@
+{
+  "sourceLanguage" : "en",
+  "strings" : {
+    "%lld" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%lld"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%lld"
+          }
+        }
+      }
+    },
+    "%lld / %lld" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$lld / %2$lld"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$lld / %2$lld"
+          }
+        }
+      }
+    },
+    "Add pattern" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Anleitung hinzufügen"
+          }
+        }
+      }
+    },
+    "Add your first progress photo" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Füge dein erstes Fortschrittsfoto hinzu"
+          }
+        }
+      }
+    },
+    "Checkered Tunesian Blanket" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Karierte Tunesische Decke"
+          }
+        }
+      }
+    },
+    "Current row:" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Aktuelle Reihe:"
+          }
+        }
+      }
+    },
+    "Deadline:" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Deadline:"
+          }
+        }
+      }
+    },
+    "Delete project" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Projekt löschen"
+          }
+        }
+      }
+    },
+    "Details:" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Details:"
+          }
+        }
+      }
+    },
+    "eg. 1" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "z.B. 1"
+          }
+        }
+      }
+    },
+    "eg. 10" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "z.B. 10"
+          }
+        }
+      }
+    },
+    "eg. Amigurumi" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "z.B. Amigurumi"
+          }
+        }
+      }
+    },
+    "eg. Aug 28th 2025" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "z.B. 28. August 2025"
+          }
+        }
+      }
+    },
+    "eg. Body" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "z.B. Körper"
+          }
+        }
+      }
+    },
+    "eg. Cotton yarn" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "z.B. Baumwollgarn"
+          }
+        }
+      }
+    },
+    "eg. Crochet" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "z.B. Häkeln"
+          }
+        }
+      }
+    },
+    "eg. Sep 1st 2025" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "z.B. 1. September 2025"
+          }
+        }
+      }
+    },
+    "eg. Sep 3rd 2025" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "z.B. 3. September 2025"
+          }
+        }
+      }
+    },
+    "Enddate:" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Enddatum"
+          }
+        }
+      }
+    },
+    "Gallery:" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Galerie:"
+          }
+        }
+      }
+    },
+    "Let your ideas unravel here..." : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Lasse hier deinen Ideen freien Lauf…"
+          }
+        }
+      }
+    },
+    "New part:" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Neues Teil:"
+          }
+        }
+      }
+    },
+    "New tag:" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Neuer Tag:"
+          }
+        }
+      }
+    },
+    "Notes:" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Notizen:"
+          }
+        }
+      }
+    },
+    "Nothing here yet, sorry :(" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sorry, hier gibt’s nichts zu sehen :("
+          }
+        }
+      }
+    },
+    "Parts:" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Teile:"
+          }
+        }
+      }
+    },
+    "Pattern:" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Anleitung:"
+          }
+        }
+      }
+    },
+    "Row counter for:" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Reihenzähler für:"
+          }
+        }
+      }
+    },
+    "Selected part" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Teil auswählen"
+          }
+        }
+      }
+    },
+    "Start capturing your progress!" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Beginne, deinen Fortschritt festzuhalten!"
+          }
+        }
+      }
+    },
+    "Startdate:" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Startdatum"
+          }
+        }
+      }
+    },
+    "Submit" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sichern"
+          }
+        }
+      }
+    },
+    "Tags:" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tags:"
+          }
+        }
+      }
+    },
+    "Techniques:" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Techniken:"
+          }
+        }
+      }
+    },
+    "This project has no pattern yet" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dieses Projekt hat noch keine Anleitung"
+          }
+        }
+      }
+    },
+    "Total rows:" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Gesamtreihenanzahl:"
+          }
+        }
+      }
+    },
+    "Yarn:" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Garn:"
+          }
+        }
+      }
+    },
+    "Your project gallery is empty." : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Deine Projekt-Galerie ist leer."
+          }
+        }
+      }
+    }
+  },
+  "version" : "1.0"
+}

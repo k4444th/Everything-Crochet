@@ -8,9 +8,6 @@ struct ContentView: View {
     var body: some View {
         VStack {
             ScrollView {
-                
-                
-                
                 let columns = [
                     GridItem(.flexible()),
                     GridItem(.flexible())
@@ -31,10 +28,12 @@ struct ContentView: View {
                                 case .wishlist: return "heart"
                                 case .statistics: return "chart.bar"
                                 case .achievements: return "star"
+                                case .timeline: return "clock"
+                                case .settings: return "gearshape"
                             }
                         }
                         
-                        if contentName.title != "" {
+                        if contentName.title.first != "(" && contentName.title.last != ")" {
                             ContentCardView(
                                 content: contentName,
                                 iconName: iconName,

@@ -11,19 +11,23 @@ enum MainContent: CaseIterable{
     case wishlist
     case statistics
     case achievements
+    case timeline
+    case settings
     
     var title: String {
         switch self {
-            case .contents: return "Contents"
-            case .projects: return "Projects"
-            case .project_detail: return ""
-            case .patterns: return "Patterns"
-            case .stash: return "Stash"
-            case .wips: return "WIPs"
-            case .stitches: return "Stitches"
-            case .wishlist: return "Wishlist"
-            case .statistics: return "Statistics"
-            case .achievements: return "Achievements"
+            case .contents: return Locale.current.language.languageCode?.identifier == "en" ? "Contents" : "Übersicht"
+            case .projects: return Locale.current.language.languageCode?.identifier == "en" ? "Projects" : "Projekte"
+            case .project_detail: return Locale.current.language.languageCode?.identifier == "en" ? "(Project Details)" : "(Projektdetails)"
+            case .patterns: return Locale.current.language.languageCode?.identifier == "en" ? "Patterns" : "Anleitungen"
+            case .stash: return Locale.current.language.languageCode?.identifier == "en" ? "Stash" : "Lager"
+            case .wips: return Locale.current.language.languageCode?.identifier == "en" ? "WIPs" : "WIPs"
+            case .stitches: return Locale.current.language.languageCode?.identifier == "en" ? "Stitches" : "Maschen"
+            case .wishlist: return Locale.current.language.languageCode?.identifier == "en" ? "Wishlist" : "Wunschliste"
+            case .statistics: return Locale.current.language.languageCode?.identifier == "en" ? "Statistics" : "Statistik"
+            case .achievements: return Locale.current.language.languageCode?.identifier == "en" ? "Achievements" : "Erfolge"
+            case .timeline: return Locale.current.language.languageCode?.identifier == "en" ? "Timeline" : "Zeitleiste"
+            case .settings: return Locale.current.language.languageCode?.identifier == "en" ? "Settings" : "Einstellungen"
         }
     }
 }
@@ -115,6 +119,20 @@ struct MainView: View {
                                 editModeVisible = false
                                 addIconVisible = false
                             }
+                case .timeline:
+                    NothingHereYetView().frame(maxWidth: .infinity, maxHeight: .infinity).onAppear {
+                            editMode = false
+                            addMode = false
+                            editModeVisible = false
+                            addIconVisible = false
+                        }
+                case .settings:
+                    NothingHereYetView().frame(maxWidth: .infinity, maxHeight: .infinity).onAppear {
+                            editMode = false
+                            addMode = false
+                            editModeVisible = false
+                            addIconVisible = false
+                        }
                 }
             }
             

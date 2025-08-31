@@ -60,7 +60,7 @@ struct NavbarView: View {
                 HStack {
                     Spacer()
                     
-                    Text("\(currentContent)".uppercased().replacingOccurrences(of: "_", with: " ")).foregroundColor(Color.lighter).fontWeight(.bold)
+                    Text("\(currentContent.title)".uppercased() .replacingOccurrences(of: "(", with: "") .replacingOccurrences(of: ")", with: "")) .foregroundColor(Color.lighter) .fontWeight(.bold)
                     
                     Spacer()
                 }.frame(maxHeight: .infinity, alignment: .top)
@@ -71,5 +71,5 @@ struct NavbarView: View {
 }
 
 #Preview {
-    NavbarView(presentSideMenu: .constant(false), currentContent: .constant(.contents), editMode: .constant(false), editModeVisible: .constant(false), addIconVisible: .constant(false), addMode: .constant(false))
+    NavbarView(presentSideMenu: .constant(false), currentContent: .constant(.project_detail), editMode: .constant(false), editModeVisible: .constant(false), addIconVisible: .constant(false), addMode: .constant(false))
 }
