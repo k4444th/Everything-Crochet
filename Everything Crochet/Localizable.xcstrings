@@ -54,6 +54,7 @@
       }
     },
     "Checkered Tunesian Blanket" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -62,6 +63,12 @@
           }
         }
       }
+    },
+    "Create new project" : {
+
+    },
+    "Create project" : {
+
     },
     "Current row:" : {
       "localizations" : {

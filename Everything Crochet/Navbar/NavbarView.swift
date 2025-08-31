@@ -45,12 +45,23 @@ struct NavbarView: View {
                     }
                     
                     if addIconVisible {
-                        Button  {
-                            addMode.toggle()
-                        } label: {
-                            Image(systemName: "plus")
-                                .imageScale(.large)
-                                .foregroundColor(Color.lighter)
+                        if addMode {
+                            Button  {
+                                addMode.toggle()
+                            } label: {
+                                Image(systemName: "multiply")
+                                    .imageScale(.large)
+                                    .foregroundColor(Color.lighter)
+                            }
+                        }
+                        if !addMode {
+                            Button  {
+                                addMode.toggle()
+                            } label: {
+                                Image(systemName: "plus")
+                                    .imageScale(.large)
+                                    .foregroundColor(Color.lighter)
+                            }
                         }
                     }
                 }

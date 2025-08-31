@@ -56,7 +56,7 @@ struct MainView: View {
                                 addIconVisible = false
                             }
                     case .projects:
-                        ProjectsView(currentContent: $currentContent).frame(maxWidth: .infinity, maxHeight: .infinity) .onAppear {
+                        ProjectsView(currentContent: $currentContent, addMode: $addMode).frame(maxWidth: .infinity, maxHeight: .infinity) .onAppear {
                                 editMode = false
                                 addMode = false
                                 editModeVisible = false
