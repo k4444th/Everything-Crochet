@@ -1,8 +1,10 @@
+import PhotosUI
 import SwiftUI
 
 struct ProjectDetailView: View {
     @Binding var editMode: Bool
     
+    @State var selectedItem: PhotosPickerItem?
     @State var previewPhoto: URL? = URL(string: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQhnqZpQ6W8HhJCtjrathdXW4djHWyp9itXIg&s")
     @State var projectName: String = "Checkered Tunesian Blanket"
     @State var tags: [String] = ["Blanket", "Something", "Test", "Testing"]
@@ -20,13 +22,34 @@ struct ProjectDetailView: View {
         URL(string: "https://i.ytimg.com/vi/YM75duvKGFY/maxresdefault.jpg")
     ].compactMap { $0 }
     
+    func loadImage() {
+        Task {
+            guard let imageData = try await selectedItem?.loadTransferable(type: Data.self) else {  return }
+            guard let inputImage = UIImage(data: imageData) else { return }
+            print("Import image to preview:")
+            print(inputImage)
+        }
+    }
+    
     var body: some View {
         ScrollView {
             VStack (alignment: .leading) {
                 AsyncImage(url: previewPhoto) { phase in
                     if let image = phase.image {
-                        image
-                            .resizable() .scaledToFill() .frame(maxWidth: .infinity) .frame(height: 150) .clipped()
+                        ZStack {
+                            image
+                                .resizable() .scaledToFill() .frame(maxWidth: .infinity) .frame(height: 150) .clipped()
+                            if editMode {
+                                Rectangle() .fill(Color.lighter) .opacity(0.3) .frame(maxWidth: .infinity) .frame(height: 150)
+                                
+                                PhotosPicker(selection: $selectedItem) {
+                                    Image(systemName: "pencil.circle.fill")
+                                        .font(.largeTitle)
+                                        .foregroundColor(Color.accent)
+                                        .padding()
+                                }
+                            }
+                        }
                     }
                 }
                 
@@ -40,7 +63,7 @@ struct ProjectDetailView: View {
                         
                         PartsEditModeView(progress: $progress, parts: $parts)
                         
-                        // PatternEditMode
+                        PatternEditModeView(pdfUrl: patternLink).frame(height: 250)
                         
                         GalleryEditModeView(images: $progressPhotos)
                         
@@ -58,10 +81,10 @@ struct ProjectDetailView: View {
                     
                     GalleryView(images: $progressPhotos)
                     
-                    NotesView(text: $notes, editMode: $editMode).padding(.horizontal)
+                    NotesView(text: $notes).padding(.horizontal)
                 }
             }
-        }
+        } .onChange(of: selectedItem, loadImage)
     }
 }
 

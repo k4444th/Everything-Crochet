@@ -1,8 +1,6 @@
-import PDFKit
 import SwiftUI
 
-struct PatternView: View {
-    
+struct PatternEditModeView: View {
     var pdfUrl: String
     
     var body: some View {
@@ -10,7 +8,18 @@ struct PatternView: View {
             Text("Pattern:").font(.title2).padding(.vertical, 8)
             
             if pdfUrl.count > 0 {
-                PDFKitView(pdfUrl: pdfUrl)
+                ZStack {
+                    PDFKitView(pdfUrl: pdfUrl)
+                    Rectangle() .fill(Color.lighter) .opacity(0.3) .frame(maxWidth: .infinity) .frame(maxHeight: .infinity)
+                    Button {
+                        print("Edit project pattern")
+                    } label: {
+                        Image(systemName: "pencil.circle.fill")
+                            .font(.largeTitle)
+                            .foregroundColor(Color.accent)
+                            .padding()
+                    }
+                }
             }
             
             else {
@@ -33,5 +42,6 @@ struct PatternView: View {
 }
 
 #Preview {
-    PatternView(pdfUrl: "https://www.antennahouse.com/hubfs/xsl-fo-sample/pdf/basic-link-1.pdf")
+    PatternEditModeView(pdfUrl: "https://www.antennahouse.com/hubfs/xsl-fo-sample/pdf/basic-link-1.pdf")
 }
+
