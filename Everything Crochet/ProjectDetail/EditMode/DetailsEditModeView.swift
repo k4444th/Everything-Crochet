@@ -14,6 +14,11 @@ struct DetailsEditModeView: View {
     @Binding var deadline: String
     @Binding var yarn: String
     
+    @FocusState var startdateFocused: Bool
+    @FocusState var enddateFocused: Bool
+    @FocusState var deadlineFocused: Bool
+    @FocusState var yarnFocused: Bool
+    
     var body: some View {
         VStack(alignment: .leading) {
             Text("Details:").font(.title2).padding(.vertical, 8)
@@ -31,8 +36,9 @@ struct DetailsEditModeView: View {
                 HStack {
                     HStack {
                         Text("Techniques:")
-                        TextField("eg. Crochet", text: $newTechniques) .textFieldStyle(RoundedBorderTextFieldStyle())
+                        TextField("eg. Crochet", text: $newTechniques) .textFieldStyle(RoundedBorderTextFieldStyle()) .focused($techniquesFocused)
                         Button {
+                            techniquesFocused = false
                             newTechniques = techniques
                         } label: {
                             Image(systemName: "xmark.circle.fill")
@@ -40,6 +46,7 @@ struct DetailsEditModeView: View {
                                 .foregroundColor(Color.appSecondary)
                         }
                         Button {
+                            techniquesFocused = false
                             techniques = newTechniques
                             print("Edit technique '" + newTechniques + "'")
                         } label: {
@@ -57,8 +64,9 @@ struct DetailsEditModeView: View {
                 HStack {
                     HStack {
                         Text("Yarn:")
-                        TextField("eg. Cotton yarn", text: $newYarn) .textFieldStyle(RoundedBorderTextFieldStyle())
+                        TextField("eg. Cotton yarn", text: $newYarn) .textFieldStyle(RoundedBorderTextFieldStyle()) .focused($yarnFocused)
                         Button {
+                            yarnFocused = false
                             newYarn = yarn
                         } label: {
                             Image(systemName: "xmark.circle.fill")
@@ -66,6 +74,7 @@ struct DetailsEditModeView: View {
                                 .foregroundColor(Color.appSecondary)
                         }
                         Button {
+                            yarnFocused = false
                             yarn = newYarn
                             print("Edit yarn '" + newYarn + "'")
                         } label: {
@@ -83,8 +92,9 @@ struct DetailsEditModeView: View {
                 VStack {
                     HStack {
                         Text("Startdate:")
-                        TextField("eg. Aug 28th 2025", text: $newStartdate) .textFieldStyle(RoundedBorderTextFieldStyle())
+                        TextField("eg. Aug 28th 2025", text: $newStartdate) .textFieldStyle(RoundedBorderTextFieldStyle()) .focused($startdateFocused)
                         Button {
+                            startdateFocused = false
                             newStartdate = startdate
                         } label: {
                             Image(systemName: "xmark.circle.fill")
@@ -92,6 +102,7 @@ struct DetailsEditModeView: View {
                                 .foregroundColor(Color.appSecondary)
                         }
                         Button {
+                            startdateFocused = false
                             startdate = newStartdate
                             print("Edit startdate '" + newStartdate + "'")
                         } label: {
@@ -102,8 +113,9 @@ struct DetailsEditModeView: View {
                     }
                     HStack {
                         Text("Enddate:")
-                        TextField("eg. Sep 3rd 2025", text: $newEnddate) .textFieldStyle(RoundedBorderTextFieldStyle())
+                        TextField("eg. Sep 3rd 2025", text: $newEnddate) .textFieldStyle(RoundedBorderTextFieldStyle()) .focused($enddateFocused)
                         Button {
+                            enddateFocused = false
                             newEnddate = enddate
                         } label: {
                             Image(systemName: "xmark.circle.fill")
@@ -111,6 +123,7 @@ struct DetailsEditModeView: View {
                                 .foregroundColor(Color.appSecondary)
                         }
                         Button {
+                            enddateFocused = false
                             enddate = newEnddate
                             print("Edit enddate '" + newEnddate + "'")
                         } label: {
@@ -127,8 +140,9 @@ struct DetailsEditModeView: View {
                 
                 HStack {
                     Text("Deadline:")
-                    TextField("eg. Sep 1st 2025", text: $newDeadline) .textFieldStyle(RoundedBorderTextFieldStyle())
+                    TextField("eg. Sep 1st 2025", text: $newDeadline) .textFieldStyle(RoundedBorderTextFieldStyle()) .focused($deadlineFocused)
                     Button {
+                        deadlineFocused = false
                         newDeadline = deadline
                     } label: {
                         Image(systemName: "xmark.circle.fill")
@@ -136,6 +150,7 @@ struct DetailsEditModeView: View {
                             .foregroundColor(Color.appSecondary)
                     }
                     Button {
+                        deadlineFocused = false
                         deadline = newDeadline
                         print("Edit deadline '" + newDeadline + "'")
                     } label: {

@@ -9,6 +9,11 @@ struct PartsEditModeView: View {
     @State var tempProgress: [[Int]] = []
     @State var newPart: String = ""
     
+    // Vereinfachte Focus-States pro TextField-Typ
+    @FocusState private var newPartFocused: Bool
+    @FocusState private var currentRowFocusedIndex: Int?
+    @FocusState private var totalRowsFocusedIndex: Int?
+    
     let formatter: NumberFormatter = {
         let formatter = NumberFormatter()
         formatter.numberStyle = .decimal
@@ -32,9 +37,7 @@ struct PartsEditModeView: View {
     
     var body: some View {
         VStack(alignment: .leading) {
-            Text("Parts:")
-                .font(.title2)
-                .padding(.vertical, 8)
+            Text("Parts:").font(.title2).padding(.vertical, 8)
             
             FlowLayoutView(items: parts, spacing: 8) { part in
                 TagView(tagName: part, color: Color.lighter, editMode: $editMode, info: false)
@@ -44,8 +47,10 @@ struct PartsEditModeView: View {
                 Text("New part:")
                 TextField("eg. Body", text: $newPart)
                     .textFieldStyle(RoundedBorderTextFieldStyle())
+                    .focused($newPartFocused)
                 
                 Button {
+                    newPartFocused = false
                     newPart = ""
                 } label: {
                     Image(systemName: "xmark.circle.fill")
@@ -59,8 +64,9 @@ struct PartsEditModeView: View {
                     progress.append([0, 0])
                     tempProgress.append([0, 0])
                     showError.append(false)
-                    newPart = ""
+                    newPartFocused = false
                     print("Add part '\(newPart)'")
+                    newPart = ""
                 } label: {
                     Image(systemName: "checkmark.circle.fill")
                         .font(.largeTitle)
@@ -71,21 +77,30 @@ struct PartsEditModeView: View {
             
             ForEach(parts.indices, id: \.self) { index in
                 VStack(alignment: .leading) {
-                    Text(parts[index])
-                        .font(.title3)
-                    
+                    Text(parts[index]).font(.title3)
+
                     HStack {
                         Text("Current row:")
-                        TextField("eg. 1", value: bindingForTempProgress(row: index, column: 0), formatter: formatter)
-                            .textFieldStyle(RoundedBorderTextFieldStyle())
+                        TextField(
+                            "eg. 1",
+                            value: bindingForTempProgress(row: index, column: 0),
+                            formatter: formatter
+                        )
+                        .keyboardType(.numberPad)
+                        .textFieldStyle(RoundedBorderTextFieldStyle())
+                        .focused($currentRowFocusedIndex, equals: index)
                         
-                        Button { tempProgress[index][0] = progress[index][0] } label: {
+                        Button {
+                            tempProgress[index][0] = progress[index][0]
+                            currentRowFocusedIndex = nil
+                        } label: {
                             Image(systemName: "xmark.circle.fill")
                                 .font(.largeTitle)
                                 .foregroundColor(Color.appSecondary)
                         }
                         
                         Button {
+                            currentRowFocusedIndex = nil
                             if tempProgress[index][0] > tempProgress[index][1] {
                                 showError[index] = true
                             } else {
@@ -99,19 +114,29 @@ struct PartsEditModeView: View {
                                 .foregroundColor(Color.appSecondary2)
                         }
                     }
-                    
+
                     HStack {
                         Text("Total rows:")
-                        TextField("eg. 10", value: bindingForTempProgress(row: index, column: 1), formatter: formatter)
-                            .textFieldStyle(RoundedBorderTextFieldStyle())
+                        TextField(
+                            "eg. 10",
+                            value: bindingForTempProgress(row: index, column: 1),
+                            formatter: formatter
+                        )
+                        .keyboardType(.numberPad)
+                        .textFieldStyle(RoundedBorderTextFieldStyle())
+                        .focused($totalRowsFocusedIndex, equals: index)
                         
-                        Button { tempProgress[index][1] = progress[index][1] } label: {
+                        Button {
+                            tempProgress[index][1] = progress[index][1]
+                            totalRowsFocusedIndex = nil
+                        } label: {
                             Image(systemName: "xmark.circle.fill")
                                 .font(.largeTitle)
                                 .foregroundColor(Color.appSecondary)
                         }
                         
                         Button {
+                            totalRowsFocusedIndex = nil
                             if tempProgress[index][0] > tempProgress[index][1] {
                                 showError[index] = true
                             } else {
@@ -133,12 +158,14 @@ struct PartsEditModeView: View {
                             Spacer()
                         }
                     }
-                } .padding(.bottom)
+                }.padding(.bottom)
             }
-        } .onAppear {
+        }
+        .onAppear {
             tempProgress = progress
             showError = Array(repeating: false, count: parts.count)
-        } .onChange(of: progress, { tempProgress = progress })
+        }
+        .onChange(of: progress) { tempProgress = progress }
     }
 }
 

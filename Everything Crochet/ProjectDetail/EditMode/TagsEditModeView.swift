@@ -6,6 +6,8 @@ struct TagsEditModeView: View {
     
     @Binding var editMode: Bool
     @Binding var tags: [String]
+                        
+    @FocusState var newTagFocused: Bool
     
     var body: some View {
         VStack (alignment: .leading) {
@@ -17,8 +19,9 @@ struct TagsEditModeView: View {
             
             HStack {
                 Text("New tag:")
-                TextField("eg. Amigurumi", text: $newTag) .textFieldStyle(RoundedBorderTextFieldStyle())
+                TextField("eg. Amigurumi", text: $newTag) .textFieldStyle(RoundedBorderTextFieldStyle()) .focused($newTagFocused)
                 Button {
+                    newTagFocused = false
                     newTag = ""
                 } label: {
                     Image(systemName: "xmark.circle.fill")
@@ -26,6 +29,7 @@ struct TagsEditModeView: View {
                         .foregroundColor(Color.appSecondary)
                 }
                 Button {
+                    newTagFocused = false
                     if newTag.count > 0 {
                         tags.append(newTag)
                         print("Add tag '" + newTag + "'")
