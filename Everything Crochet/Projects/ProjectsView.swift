@@ -9,6 +9,39 @@ struct ProjectsView: View {
     
     @State var newProject: Project = Project()
     
+    func createProject() {
+        newProject = Project(
+            id: 0,
+            name: "Project name",
+            previewImage: URL(string: "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Placeholder_view_vector.svg/1362px-Placeholder_view_vector.svg.png"),
+            tags: [],
+            parts: ["Blanket"],
+            techniques: "",
+            startdate: "",
+            enddate: "",
+            deadline: "",
+            yarn: "",
+            notes: "",
+            patternLink: "",
+            progress: [[5, 20]],
+            progressPhotos: []
+        )
+        
+        var projects: [Project] = []
+        if let savedData = UserDefaults.standard.data(forKey: "projects"),
+           let decoded = try? JSONDecoder().decode([Project].self, from: savedData) {
+            projects = decoded
+        }
+        
+        newProject.id = (projects.map { $0.id }.max() ?? -1) + 1
+        
+        projects.append(newProject)
+        
+        if let encoded = try? JSONEncoder().encode(projects) {
+            UserDefaults.standard.set(encoded, forKey: "projects")
+        }
+    }
+    
     var body: some View {
         if addMode {
             VStack () {
@@ -22,36 +55,7 @@ struct ProjectsView: View {
                 Button {
                     addMode = false
 
-                    newProject = Project(
-                        id: 0,
-                        name: "Project name",
-                        previewImage: URL(string: "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Placeholder_view_vector.svg/1362px-Placeholder_view_vector.svg.png"),
-                        tags: [],
-                        parts: ["Blanket"],
-                        techniques: "",
-                        startdate: "",
-                        enddate: "",
-                        deadline: "",
-                        yarn: "",
-                        notes: "",
-                        patternLink: "",
-                        progress: [[5, 20]],
-                        progressPhotos: []
-                    )
-                    
-                    var projects: [Project] = []
-                    if let savedData = UserDefaults.standard.data(forKey: "projects"),
-                       let decoded = try? JSONDecoder().decode([Project].self, from: savedData) {
-                        projects = decoded
-                    }
-                    
-                    newProject.id = (projects.map { $0.id }.max() ?? -1) + 1
-                    
-                    projects.append(newProject)
-                    
-                    if let encoded = try? JSONEncoder().encode(projects) {
-                        UserDefaults.standard.set(encoded, forKey: "projects")
-                    }
+                    createProject()
                 } label: {
                     Text("Create new project")
                         .padding(12)
@@ -67,16 +71,31 @@ struct ProjectsView: View {
             ScrollView {
                 VStack {
                     if let projectData,
-                       let decodedProjects = try? JSONDecoder().decode([Project].self, from: projectData) {
+                       let decodedProjects = try? JSONDecoder().decode([Project].self, from: projectData),
+                       !decodedProjects.isEmpty {
+                        
                         ForEach(decodedProjects, id: \.id) { project in
                             ProjectCardView(
                                 currentContent: $currentContent,
-                                project: .constant(project), currentProject: $currentProject
+                                project: .constant(project),
+                                currentProject: $currentProject
                             )
                         }
+                        
+                    } else {
+                        Button {
+                            createProject()
+                        } label: {
+                            Text("Create your first project!")
+                                .padding(12)
+                                .tint(Color.lighter)
+                                .background(
+                                    RoundedRectangle(cornerRadius: 20)
+                                        .fill(Color.appPrimary)
+                                )
+                        }.padding()
                     }
-                }
-                .padding()
+                } .padding()
             }
         }
     }
