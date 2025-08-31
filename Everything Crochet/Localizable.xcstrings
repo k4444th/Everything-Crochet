@@ -54,10 +54,34 @@
       }
     },
     "Create new project" : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Neues Projekt erstellen"
+          }
+        }
+      }
     },
     "Create project" : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Projekt erstellen"
+          }
+        }
+      }
+    },
+    "Create your first project!" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Erstelle dein erstes Projekt!"
+          }
+        }
+      }
     },
     "Current row:" : {
       "localizations" : {
