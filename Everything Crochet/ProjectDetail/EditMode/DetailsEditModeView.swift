@@ -14,6 +14,7 @@ struct DetailsEditModeView: View {
     @Binding var deadline: String
     @Binding var yarn: String
     
+    @FocusState var techniquesFocused: Bool
     @FocusState var startdateFocused: Bool
     @FocusState var enddateFocused: Bool
     @FocusState var deadlineFocused: Bool
