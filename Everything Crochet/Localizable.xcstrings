@@ -53,17 +53,6 @@
         }
       }
     },
-    "Checkered Tunesian Blanket" : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Karierte Tunesische Decke"
-          }
-        }
-      }
-    },
     "Create new project" : {
 
     },

@@ -6,29 +6,28 @@ struct PatternView: View {
     var pdfUrl: String
     
     var body: some View {
-        VStack(alignment: .leading) {
-            Text("Pattern:").font(.title2).padding(.vertical, 8)
-            
-            if pdfUrl.count > 0 {
+        if pdfUrl.count > 0 {
+            VStack(alignment: .leading) {
+                Text("Pattern:").font(.title2).padding(.vertical, 8)
+                
                 PDFKitView(pdfUrl: pdfUrl)
-            }
-            
-            else {
-                VStack () {
-                    Text("This project has no pattern yet")
-                        .padding(.bottom)
-                    Button {
-                        print("Add pattern to project")
-                    } label: {
-                        Text("Add pattern") .padding(12) .tint(Color.lighter) .background(
-                            RoundedRectangle(cornerRadius: 20)
-                                .fill(Color.appPrimary)
-                        )
-                    }
-                } .frame(maxWidth: .infinity)
-            }
-            
-        }.frame(maxWidth: .infinity, alignment: .leading) .padding(.bottom)
+            } .frame(width: .infinity, height: 550) .padding(.bottom)
+        }
+
+        else {
+            VStack (alignment: .center) {
+                Text("This project has no pattern yet")
+                    .padding(.bottom)
+                Button {
+                    print("Add pattern to project")
+                } label: {
+                    Text("Add pattern") .padding(12) .tint(Color.lighter) .background(
+                        RoundedRectangle(cornerRadius: 20)
+                            .fill(Color.appPrimary)
+                    )
+                }
+            } .frame(width: .infinity, height: 100) .padding(.bottom)
+        }
     }
 }
 

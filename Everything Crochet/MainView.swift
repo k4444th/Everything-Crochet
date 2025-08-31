@@ -35,6 +35,7 @@ enum MainContent: CaseIterable{
 struct MainView: View {
     @State var presentSideMenu = false
     @State var currentContent: MainContent = .contents
+    @State var currentProject: Project = Project()
    
     @State var editModeVisible: Bool = false
     @State var editMode: Bool = false
@@ -56,14 +57,14 @@ struct MainView: View {
                                 addIconVisible = false
                             }
                     case .projects:
-                        ProjectsView(currentContent: $currentContent, addMode: $addMode).frame(maxWidth: .infinity, maxHeight: .infinity) .onAppear {
+                    ProjectsView(currentContent: $currentContent, addMode: $addMode, currentProject: $currentProject).frame(maxWidth: .infinity, maxHeight: .infinity) .onAppear {
                                 editMode = false
                                 addMode = false
                                 editModeVisible = false
                                 addIconVisible = true
                             }
                     case .project_detail:
-                    ProjectDetailView(editMode: $editMode).frame(maxWidth: .infinity, maxHeight: .infinity)
+                    ProjectDetailView(editMode: $editMode, project: $currentProject).frame(maxWidth: .infinity, maxHeight: .infinity)
                         .onAppear {
                             editMode = false
                             addMode = false
