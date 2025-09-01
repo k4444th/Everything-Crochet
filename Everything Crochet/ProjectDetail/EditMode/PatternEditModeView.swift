@@ -10,13 +10,13 @@ struct PatternEditModeView: View {
             if pdfUrl.count > 0 {
                 ZStack {
                     PDFKitView(pdfUrl: pdfUrl)
-                    Rectangle() .fill(Color.lighter) .opacity(0.3) .frame(maxWidth: .infinity) .frame(maxHeight: .infinity)
+                    Rectangle() .fill(Color.accent) .opacity(0.3) .frame(maxWidth: .infinity) .frame(maxHeight: .infinity)
                     Button {
                         print("Edit project pattern")
                     } label: {
                         Image(systemName: "pencil.circle.fill")
                             .font(.largeTitle)
-                            .foregroundColor(Color.accent)
+                            .foregroundColor(Color.lighter)
                             .padding()
                     }
                 }

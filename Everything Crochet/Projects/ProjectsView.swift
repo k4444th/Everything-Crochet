@@ -107,10 +107,10 @@ struct ProjectsView: View {
                     HStack {
                         Spacer()
                         if Locale.current.language.languageCode?.identifier == "en" {
-                            TagView(tagName: "Project name cannot be emty!", color: Color.appSecondary, editMode: .constant(false), info: true)
+                            TagView(tagName: "Project name cannot be emty!", color: Color.appSecondary, editMode: .constant(false), info: true, onDelete:{  })
                         }
                         else {
-                            TagView(tagName: "Der Projektname darf nicht leer sein!", color: Color.appSecondary, editMode: .constant(false), info: true)
+                            TagView(tagName: "Der Projektname darf nicht leer sein!", color: Color.appSecondary, editMode: .constant(false), info: true, onDelete: { })
                         }
                         
                         Spacer()

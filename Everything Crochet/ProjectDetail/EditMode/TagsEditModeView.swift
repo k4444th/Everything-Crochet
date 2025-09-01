@@ -13,8 +13,9 @@ struct TagsEditModeView: View {
         VStack (alignment: .leading) {
             Text("Tags:").font(.title2).padding(.vertical, 8)
             
-            FlowLayoutView(items: tags, spacing: 8) { tag in
-                TagView(tagName: tag, color: Color.lighter, editMode: $editMode, info: false)
+            FlowLayoutView(items: tags, spacing: 8) { index, tag in
+                TagView( tagName: tag, color: Color.lighter, editMode: $editMode, info: false, onDelete: { tags.remove(at: index)}
+                )
             }
             
             HStack {
@@ -47,6 +48,6 @@ struct TagsEditModeView: View {
 }
 
 #Preview {
-    TagsEditModeView(editMode: .constant(true), tags: .constant(["Hello World", "Crochet", "Blanket", "Something"]))
+    TagsEditModeView(editMode: .constant(true), tags: .constant(["Hello World"]))
 }
 

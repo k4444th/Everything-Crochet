@@ -4,6 +4,7 @@ import SwiftUI
 struct ProjectDetailView: View {
     @Binding var editMode: Bool
     @Binding var project: Project
+    @Binding var currentContent: MainContent
     
     @State var selectedItem: PhotosPickerItem?
     
@@ -22,8 +23,16 @@ struct ProjectDetailView: View {
             projects = decoded
         }
         
-        if let index = projects.firstIndex(where: { $0.id == project.id }) {
-            projects[index] = project
+        if project.name.count > 0 {
+            if let index = projects.firstIndex(where: { $0.id == project.id }) {
+                projects[index] = project
+            }
+        }
+        else {
+            if let index = projects.firstIndex(where: { $0.id == project.id }) {
+                projects.remove(at: index)
+            }
+            currentContent = .projects
         }
 
         if let encoded = try? JSONEncoder().encode(projects) {
@@ -100,7 +109,7 @@ struct ProjectDetailView: View {
                         
                         GalleryEditModeView(images: $project.progressPhotos)
                         
-                        DeleteEditModeView()
+                        DeleteEditModeView(project: $project)
                         
                     } .padding(.horizontal)
                 }
@@ -126,5 +135,5 @@ struct ProjectDetailView: View {
 }
 
 #Preview {
-    ProjectDetailView(editMode: .constant(false), project: .constant(Project(id: 0, name: "Checkered Tunesian Blanket", previewImage: Data(), tags: ["Blanket"], parts: ["Blanket"], techniques: "Tunesian Crochet", startdate: "27.08.2025", enddate: "-", deadline: "01.01.2026", yarn: "Lisa Premium (Gründl)", notes: "", patternLink: "https://www.antennahouse.com/hubfs/xsl-fo-sample/pdf/basic-link-1.pdf", progress: [[5, 20]], progressPhotos: [].compactMap { $0 })))
+    ProjectDetailView(editMode: .constant(false), project: .constant(Project(id: 0, name: "Checkered Tunesian Blanket", previewImage: Data(), tags: ["Blanket"], parts: ["Blanket"], techniques: "Tunesian Crochet", startdate: "27.08.2025", enddate: "-", deadline: "01.01.2026", yarn: "Lisa Premium (Gründl)", notes: "", patternLink: "https://www.antennahouse.com/hubfs/xsl-fo-sample/pdf/basic-link-1.pdf", progress: [[5, 20]], progressPhotos: [].compactMap { $0 })), currentContent: .constant(.project_detail))
 }

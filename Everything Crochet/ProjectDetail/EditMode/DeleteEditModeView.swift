@@ -1,9 +1,12 @@
 import SwiftUI
 
 struct DeleteEditModeView: View {
+    
+    @Binding var project: Project
+    
     var body: some View {
         Button {
-            print("Delete project")
+            project = Project(id: project.id)
         } label: {
             Text("Delete project") .padding(12) .tint(Color.lighter) .background(
                 RoundedRectangle(cornerRadius: 20)
@@ -14,5 +17,5 @@ struct DeleteEditModeView: View {
 }
 
 #Preview {
-    DeleteEditModeView()
+    DeleteEditModeView(project: .constant(Project()))
 }

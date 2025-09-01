@@ -30,7 +30,7 @@ struct PatternView: View {
                             .fill(Color.appPrimary)
                     )
                 }
-            } .frame(width: .infinity, height: 100) .padding(.bottom)
+            } .frame(height: 100) .frame(maxWidth: .infinity) .padding(.bottom)
         }
     }
 }

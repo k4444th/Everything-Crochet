@@ -7,12 +7,15 @@ struct TagView: View {
     @Binding var editMode: Bool
     @State var info: Bool
     
+    var onDelete: (() -> Void)?
+    
     var body: some View {
         ZStack {
             HStack (spacing: 0) {
                 if editMode && !info {
                     Button  {
                         print("Delete tag '" + tagName + "'")
+                        onDelete?() 
                     } label: {
                         Image(systemName: "xmark.circle.fill")
                             .font(.largeTitle)

@@ -5,6 +5,7 @@ struct PartsEditModeView: View {
     @Binding var parts: [String]
     
     @State var editMode: Bool = true
+    @State var dontDelete: Bool = false
     @State var showError: [Bool] = []
     @State var newPart: String = ""
     
@@ -38,8 +39,29 @@ struct PartsEditModeView: View {
         VStack(alignment: .leading) {
             Text("Parts:").font(.title2).padding(.vertical, 8)
             
-            FlowLayoutView(items: parts, spacing: 8) { part in
-                TagView(tagName: part, color: Color.lighter, editMode: $editMode, info: false)
+            FlowLayoutView(items: parts, spacing: 8) { index, part  in
+                TagView(tagName: part, color: Color.lighter, editMode: $editMode, info: false, onDelete: {
+                        if parts.count > 1 {
+                            parts.remove(at: index)
+                        }
+                        else {
+                            dontDelete = true
+                        }
+                    })
+            }
+            
+            if dontDelete {
+                HStack {
+                    Spacer()
+                    if Locale.current.language.languageCode?.identifier == "en" {
+                        TagView(tagName: "Your project must consist of at least one part!", color: Color.appSecondary, editMode: $editMode, info: true, onDelete: {  })
+                    }
+                    else {
+                        TagView(tagName: "Dein projekt muss aus mindestens einem Teil bestehen!", color: Color.appSecondary, editMode: $editMode, info: true, onDelete: { })
+                    }
+                   
+                    Spacer()
+                }
             }
             
             HStack {
@@ -65,6 +87,7 @@ struct PartsEditModeView: View {
                     newPartFocused = false
                     print("Add part '\(newPart)'")
                     newPart = ""
+                    dontDelete = false
                 } label: {
                     Image(systemName: "checkmark.circle.fill")
                         .font(.largeTitle)
@@ -135,10 +158,10 @@ struct PartsEditModeView: View {
                         HStack {
                             Spacer()
                             if Locale.current.language.languageCode?.identifier == "en" {
-                                TagView(tagName: "Current row must be smaller or equal to total rows!", color: Color.appSecondary, editMode: $editMode, info: true)
+                                TagView(tagName: "Current row must be smaller or equal to total rows!", color: Color.appSecondary, editMode: $editMode, info: true, onDelete: {  })
                             }
                             else {
-                                TagView(tagName: "Die aktuelle Reihe muss kleiner oder gleich der Gesamtreihenanzahl sein!", color: Color.appSecondary, editMode: $editMode, info: true)
+                                TagView(tagName: "Die aktuelle Reihe muss kleiner oder gleich der Gesamtreihenanzahl sein!", color: Color.appSecondary, editMode: $editMode, info: true, onDelete: { })
                             }
                            
                             Spacer()

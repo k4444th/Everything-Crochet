@@ -14,8 +14,8 @@ struct TagsView: View {
                     HStack (alignment: .top) {
                         if tags.count > 0 {
                             ForEach(Array(tags.enumerated()), id: \.offset) { index, tag in
-                                TagView(tagName: tag, color: Color.lighter, editMode: $editMode, info: false)
-                            }.padding(.bottom)
+                                TagView(tagName: tag, color: Color.lighter, editMode: $editMode, info: false, onDelete: { })
+                            }
                         }
                     }.padding(.horizontal)
                 }

@@ -62,7 +62,7 @@ struct GalleryEditModeView: View {
 
                             Rectangle() .fill(Color.accent) .opacity(0.3) .frame(width: 100, height: 100)
                             Button {
-                                print("Delete image at index " + String(index))
+                                images.remove(at: index)
                             } label: {
                                 Image(systemName: "xmark.circle.fill")
                                     .font(.largeTitle)
@@ -93,7 +93,9 @@ struct GalleryEditModeView: View {
                         }
                         Spacer()
                     }
-                    Button(action: { selectedImageIndex = nil }) {
+                    Button(action: {
+                        selectedImageIndex = nil
+                    }) {
                         Image(systemName: "xmark.circle.fill")
                             .font(.largeTitle)
                             .foregroundColor(.white)
