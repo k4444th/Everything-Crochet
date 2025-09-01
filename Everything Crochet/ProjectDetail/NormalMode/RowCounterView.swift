@@ -54,7 +54,9 @@ struct RowCounterView: View {
                         .foregroundColor(.appSecondary2)
                 }
                 Spacer()
-            } .padding(.top)
+            } .padding(.top)  .onChange(of: progress, {
+                print(progress)
+            })
             
         }.frame(maxWidth: .infinity) .padding(.bottom) .onAppear(perform: { currentPartString = parts[currentPart] }).onChange(of: currentPartString, { currentPart = parts.firstIndex(of: currentPartString) ?? 0})
     }

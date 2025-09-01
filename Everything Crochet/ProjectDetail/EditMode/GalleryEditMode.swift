@@ -3,7 +3,7 @@ import SwiftUI
 
 struct GalleryEditModeView: View {
 
-    @Binding var images: [URL]
+    @Binding var images: [Data]
     
     @State var selectedItem: PhotosPickerItem?
     @State var selectedImageIndex: Int?
@@ -36,6 +36,13 @@ struct GalleryEditModeView: View {
                         .resizable()
                         .frame(width: 60, height: 60)
                         .foregroundColor(.appSecondary2)
+                } .onChange(of: selectedItem) { oldItem, newItem in
+                    Task {
+                        guard let newItem else { return }
+                        if let data = try? await newItem.loadTransferable(type: Data.self) {
+                            images.append(data)
+                        }
+                    }
                 }
                 
                 ForEach(Array(images.enumerated()), id: \.offset) { index, imageUrl in
@@ -43,19 +50,23 @@ struct GalleryEditModeView: View {
                         selectedImageIndex = index
                     } label: {
                         ZStack {
-                            AsyncImage(url: imageUrl) { phase in
-                                if let image = phase.image {
-                                    image
-                                        .resizable() .scaledToFill() .frame(width: 100, height: 100) .clipped()
-                                }
+                            let data = imageUrl
+                            if let uiImage = UIImage(data: data) {
+                                Image(uiImage: uiImage)
+                                    .resizable()
+                                    .scaledToFill()
+                                    .frame(height: 100)
+                                    .frame(width: 100)
+                                    .clipped()
                             }
-                            Rectangle() .fill(Color.lighter) .opacity(0.3) .frame(width: 100, height: 100)
+
+                            Rectangle() .fill(Color.accent) .opacity(0.3) .frame(width: 100, height: 100)
                             Button {
                                 print("Delete image at index " + String(index))
                             } label: {
                                 Image(systemName: "xmark.circle.fill")
                                     .font(.largeTitle)
-                                    .foregroundColor(Color.accent)
+                                    .foregroundColor(Color.lighter)
                                     .padding()
                             }
                         }
@@ -66,21 +77,19 @@ struct GalleryEditModeView: View {
         }.frame(maxWidth: .infinity, alignment: .leading) .padding(.bottom)
         
         .fullScreenCover(isPresented: Binding(
-            get: { selectedImageIndex != nil },
+            get: { selectedImageIndex != nil && selectedImageIndex! < images.count },
             set: { if !$0 { selectedImageIndex = nil } }
         )) {
-            if let index = selectedImageIndex {
+            if let index = selectedImageIndex, index < images.count {
                 ZStack(alignment: .topTrailing) {
                     Color.black.ignoresSafeArea()
                     VStack {
                         Spacer()
-                        AsyncImage(url: images[index]) { phase in
-                            if let image = phase.image {
-                                image
-                                    .resizable()
-                                    .scaledToFit()
-                                    .ignoresSafeArea()
-                            }
+                        if let uiImage = UIImage(data: images[index]) {
+                            Image(uiImage: uiImage)
+                                .resizable()
+                                .scaledToFit()
+                                .frame(maxWidth: .infinity, maxHeight: .infinity)
                         }
                         Spacer()
                     }
@@ -93,10 +102,9 @@ struct GalleryEditModeView: View {
                 }
             }
         }
-
     }
 }
 
 #Preview {
-    GalleryEditModeView(images: .constant([URL(string: "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Placeholder_view_vector.svg/1362px-Placeholder_view_vector.svg.png"), URL(string: "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Placeholder_view_vector.svg/1362px-Placeholder_view_vector.svg.png"), URL(string: "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Placeholder_view_vector.svg/1362px-Placeholder_view_vector.svg.png"), URL(string: "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Placeholder_view_vector.svg/1362px-Placeholder_view_vector.svg.png"), URL(string: "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Placeholder_view_vector.svg/1362px-Placeholder_view_vector.svg.png"), URL(string: "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Placeholder_view_vector.svg/1362px-Placeholder_view_vector.svg.png"), URL(string: "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Placeholder_view_vector.svg/1362px-Placeholder_view_vector.svg.png")].compactMap { $0 }), selectedImageIndex: 0, showFullScreen: false)
+    GalleryEditModeView(images: .constant([]), selectedImageIndex: 0, showFullScreen: false)
 }

@@ -1,6 +1,6 @@
 import SwiftUI
 
-struct Project : Identifiable, Codable {
+struct Project : Identifiable, Codable, Equatable {
     var id: Int = -1
     var name: String = ""
     var previewImage: Data?
@@ -14,5 +14,5 @@ struct Project : Identifiable, Codable {
     var notes: String = ""
     var patternLink: String = ""
     var progress: [[Int]] = []
-    var progressPhotos: [URL] = []
+    var progressPhotos: [Data] = []
 }

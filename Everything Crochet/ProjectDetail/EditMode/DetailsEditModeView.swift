@@ -2,12 +2,6 @@ import SwiftUI
 
 struct DetailsEditModeView: View {
     
-    @State var newTechniques: String = ""
-    @State var newStartdate: String = ""
-    @State var newEnddate: String = ""
-    @State var newDeadline: String = ""
-    @State var newYarn: String = ""
-    
     @Binding var techniques: String
     @Binding var startdate: String
     @Binding var enddate: String
@@ -37,19 +31,10 @@ struct DetailsEditModeView: View {
                 HStack {
                     HStack {
                         Text("Techniques:")
-                        TextField("eg. Crochet", text: $newTechniques) .textFieldStyle(RoundedBorderTextFieldStyle()) .focused($techniquesFocused)
+                        TextField("eg. Crochet", text: $techniques) .textFieldStyle(RoundedBorderTextFieldStyle()) .focused($techniquesFocused)
                         Button {
                             techniquesFocused = false
-                            newTechniques = techniques
-                        } label: {
-                            Image(systemName: "xmark.circle.fill")
-                                .font(.largeTitle)
-                                .foregroundColor(Color.appSecondary)
-                        }
-                        Button {
-                            techniquesFocused = false
-                            techniques = newTechniques
-                            print("Edit technique '" + newTechniques + "'")
+                            print("Edit technique '" + techniques + "'")
                         } label: {
                             Image(systemName: "checkmark.circle.fill")
                                 .font(.largeTitle)
@@ -65,19 +50,9 @@ struct DetailsEditModeView: View {
                 HStack {
                     HStack {
                         Text("Yarn:")
-                        TextField("eg. Cotton yarn", text: $newYarn) .textFieldStyle(RoundedBorderTextFieldStyle()) .focused($yarnFocused)
+                        TextField("eg. Cotton yarn", text: $yarn) .textFieldStyle(RoundedBorderTextFieldStyle()) .focused($yarnFocused)
                         Button {
                             yarnFocused = false
-                            newYarn = yarn
-                        } label: {
-                            Image(systemName: "xmark.circle.fill")
-                                .font(.largeTitle)
-                                .foregroundColor(Color.appSecondary)
-                        }
-                        Button {
-                            yarnFocused = false
-                            yarn = newYarn
-                            print("Edit yarn '" + newYarn + "'")
                         } label: {
                             Image(systemName: "checkmark.circle.fill")
                                 .font(.largeTitle)
@@ -93,19 +68,9 @@ struct DetailsEditModeView: View {
                 VStack {
                     HStack {
                         Text("Startdate:")
-                        TextField("eg. Aug 28th 2025", text: $newStartdate) .textFieldStyle(RoundedBorderTextFieldStyle()) .focused($startdateFocused)
+                        TextField("eg. Aug 28th 2025", text: $startdate) .textFieldStyle (RoundedBorderTextFieldStyle()) .focused($startdateFocused)
                         Button {
                             startdateFocused = false
-                            newStartdate = startdate
-                        } label: {
-                            Image(systemName: "xmark.circle.fill")
-                                .font(.largeTitle)
-                                .foregroundColor(Color.appSecondary)
-                        }
-                        Button {
-                            startdateFocused = false
-                            startdate = newStartdate
-                            print("Edit startdate '" + newStartdate + "'")
                         } label: {
                             Image(systemName: "checkmark.circle.fill")
                                 .font(.largeTitle)
@@ -114,19 +79,9 @@ struct DetailsEditModeView: View {
                     }
                     HStack {
                         Text("Enddate:")
-                        TextField("eg. Sep 3rd 2025", text: $newEnddate) .textFieldStyle(RoundedBorderTextFieldStyle()) .focused($enddateFocused)
+                        TextField("eg. Sep 3rd 2025", text: $enddate) .textFieldStyle(RoundedBorderTextFieldStyle()) .focused($enddateFocused)
                         Button {
                             enddateFocused = false
-                            newEnddate = enddate
-                        } label: {
-                            Image(systemName: "xmark.circle.fill")
-                                .font(.largeTitle)
-                                .foregroundColor(Color.appSecondary)
-                        }
-                        Button {
-                            enddateFocused = false
-                            enddate = newEnddate
-                            print("Edit enddate '" + newEnddate + "'")
                         } label: {
                             Image(systemName: "checkmark.circle.fill")
                                 .font(.largeTitle)
@@ -141,19 +96,9 @@ struct DetailsEditModeView: View {
                 
                 HStack {
                     Text("Deadline:")
-                    TextField("eg. Sep 1st 2025", text: $newDeadline) .textFieldStyle(RoundedBorderTextFieldStyle()) .focused($deadlineFocused)
+                    TextField("eg. Sep 1st 2025", text: $deadline) .textFieldStyle(RoundedBorderTextFieldStyle()) .focused($deadlineFocused)
                     Button {
                         deadlineFocused = false
-                        newDeadline = deadline
-                    } label: {
-                        Image(systemName: "xmark.circle.fill")
-                            .font(.largeTitle)
-                            .foregroundColor(Color.appSecondary)
-                    }
-                    Button {
-                        deadlineFocused = false
-                        deadline = newDeadline
-                        print("Edit deadline '" + newDeadline + "'")
                     } label: {
                         Image(systemName: "checkmark.circle.fill")
                             .font(.largeTitle)
@@ -161,13 +106,7 @@ struct DetailsEditModeView: View {
                     }
                 }
             }
-        }.frame(maxWidth: .infinity, alignment: .leading) .padding(.bottom) .onAppear() {
-            newTechniques = techniques
-            newStartdate = startdate
-            newEnddate = enddate
-            newDeadline = deadline
-            newYarn = yarn
-        }
+        }.frame(maxWidth: .infinity, alignment: .leading) .padding(.bottom)
     }
 }
 

@@ -6,7 +6,6 @@ struct PartsEditModeView: View {
     
     @State var editMode: Bool = true
     @State var showError: [Bool] = []
-    @State var tempProgress: [[Int]] = []
     @State var newPart: String = ""
     
     // Vereinfachte Focus-States pro TextField-Typ
@@ -20,17 +19,17 @@ struct PartsEditModeView: View {
         return formatter
     }()
     
-    func bindingForTempProgress(row: Int, column: Int) -> Binding<Int> {
+    func bindingForProgress(row: Int, column: Int) -> Binding<Int> {
         Binding<Int>(
             get: {
-                guard tempProgress.indices.contains(row),
-                      tempProgress[row].indices.contains(column) else { return 0 }
-                return tempProgress[row][column]
+                guard progress.indices.contains(row),
+                      progress[row].indices.contains(column) else { return 0 }
+                return progress[row][column]
             },
             set: { newValue in
-                guard tempProgress.indices.contains(row),
-                      tempProgress[row].indices.contains(column) else { return }
-                tempProgress[row][column] = newValue
+                guard progress.indices.contains(row),
+                      progress[row].indices.contains(column) else { return }
+                progress[row][column] = newValue
             }
         )
     }
@@ -62,7 +61,6 @@ struct PartsEditModeView: View {
                     guard !newPart.isEmpty else { return }
                     parts.append(newPart)
                     progress.append([0, 0])
-                    tempProgress.append([0, 0])
                     showError.append(false)
                     newPartFocused = false
                     print("Add part '\(newPart)'")
@@ -83,7 +81,7 @@ struct PartsEditModeView: View {
                         Text("Current row:")
                         TextField(
                             "eg. 1",
-                            value: bindingForTempProgress(row: index, column: 0),
+                            value: bindingForProgress(row: index, column: 0),
                             formatter: formatter
                         )
                         .keyboardType(.numberPad)
@@ -91,21 +89,12 @@ struct PartsEditModeView: View {
                         .focused($currentRowFocusedIndex, equals: index)
                         
                         Button {
-                            tempProgress[index][0] = progress[index][0]
                             currentRowFocusedIndex = nil
-                        } label: {
-                            Image(systemName: "xmark.circle.fill")
-                                .font(.largeTitle)
-                                .foregroundColor(Color.appSecondary)
-                        }
-                        
-                        Button {
-                            currentRowFocusedIndex = nil
-                            if tempProgress[index][0] > tempProgress[index][1] {
+                            if progress[index][0] > progress[index][1] {
                                 showError[index] = true
                             } else {
                                 showError[index] = false
-                                progress[index][0] = tempProgress[index][0]
+                                progress[index][0] = progress[index][0]
                                 print("Update progress of part \(parts[index]) to [\(progress[index][0]), \(progress[index][1])]")
                             }
                         } label: {
@@ -119,7 +108,7 @@ struct PartsEditModeView: View {
                         Text("Total rows:")
                         TextField(
                             "eg. 10",
-                            value: bindingForTempProgress(row: index, column: 1),
+                            value: bindingForProgress(row: index, column: 1),
                             formatter: formatter
                         )
                         .keyboardType(.numberPad)
@@ -127,21 +116,12 @@ struct PartsEditModeView: View {
                         .focused($totalRowsFocusedIndex, equals: index)
                         
                         Button {
-                            tempProgress[index][1] = progress[index][1]
                             totalRowsFocusedIndex = nil
-                        } label: {
-                            Image(systemName: "xmark.circle.fill")
-                                .font(.largeTitle)
-                                .foregroundColor(Color.appSecondary)
-                        }
-                        
-                        Button {
-                            totalRowsFocusedIndex = nil
-                            if tempProgress[index][0] > tempProgress[index][1] {
+                            if progress[index][0] > progress[index][1] {
                                 showError[index] = true
                             } else {
                                 showError[index] = false
-                                progress[index][1] = tempProgress[index][1]
+                                progress[index][1] = progress[index][1]
                                 print("Update progress of part \(parts[index]) to [\(progress[index][0]), \(progress[index][1])]")
                             }
                         } label: {
@@ -168,10 +148,8 @@ struct PartsEditModeView: View {
             }
         }
         .onAppear {
-            tempProgress = progress
             showError = Array(repeating: false, count: parts.count)
         }
-        .onChange(of: progress) { tempProgress = progress }
     }
 }
 

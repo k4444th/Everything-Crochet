@@ -3,7 +3,7 @@ import SwiftUI
 
 struct GalleryView: View {
 
-    @Binding var images: [URL]
+    @Binding var images: [Data]
     
     @State var selectedItem: PhotosPickerItem?
     
@@ -32,11 +32,15 @@ struct GalleryView: View {
                             Button() {
                                 selectedImageIndex = index
                             } label: {
-                                AsyncImage(url: imageUrl) { phase in
-                                    if let image = phase.image {
-                                        image
-                                            .resizable() .scaledToFill() .frame(width: 150, height: 150) .clipped()
-                                    }
+                                let data = imageUrl
+                                if let uiImage = UIImage(data: data) {
+                                    Image(uiImage: uiImage)
+                                        .resizable()
+                                        .scaledToFill()
+                                        .frame(maxWidth: .infinity)
+                                        .frame(height: 150)
+                                        .frame(width: 150)
+                                        .clipped()
                                 }
                             }
                         }
@@ -53,27 +57,32 @@ struct GalleryView: View {
                             RoundedRectangle(cornerRadius: 20)
                                 .fill(Color.appPrimary)
                         )
+                    } .onChange(of: selectedItem) { oldItem, newItem in
+                        Task {
+                            guard let newItem else { return }
+                            if let data = try? await newItem.loadTransferable(type: Data.self) {
+                                images.append(data)
+                            }
+                        }
                     }
                 }.padding(.horizontal)
             }
         }.frame(maxWidth: .infinity, alignment: .leading) .padding(.bottom)
         
         .fullScreenCover(isPresented: Binding(
-            get: { selectedImageIndex != nil },
+            get: { selectedImageIndex != nil && selectedImageIndex! < images.count },
             set: { if !$0 { selectedImageIndex = nil } }
         )) {
-            if let index = selectedImageIndex {
+            if let index = selectedImageIndex, index < images.count {
                 ZStack(alignment: .topTrailing) {
                     Color.black.ignoresSafeArea()
                     VStack {
                         Spacer()
-                        AsyncImage(url: images[index]) { phase in
-                            if let image = phase.image {
-                                image
-                                    .resizable()
-                                    .scaledToFit()
-                                    .ignoresSafeArea()
-                            }
+                        if let uiImage = UIImage(data: images[index]) {
+                            Image(uiImage: uiImage)
+                                .resizable()
+                                .scaledToFit()
+                                .frame(maxWidth: .infinity, maxHeight: .infinity)
                         }
                         Spacer()
                     }
@@ -86,10 +95,9 @@ struct GalleryView: View {
                 }
             }
         }
-
     }
 }
 
 #Preview {
-    GalleryView(images: .constant([URL(string: "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Placeholder_view_vector.svg/1362px-Placeholder_view_vector.svg.png"), URL(string: "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Placeholder_view_vector.svg/1362px-Placeholder_view_vector.svg.png"), URL(string: "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Placeholder_view_vector.svg/1362px-Placeholder_view_vector.svg.png")].compactMap { $0 }), selectedImageIndex: 0, showFullScreen: false)
+    GalleryView(images: .constant([].compactMap { $0 }), selectedImageIndex: 0, showFullScreen: false)
 }
