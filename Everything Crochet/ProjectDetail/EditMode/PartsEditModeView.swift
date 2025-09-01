@@ -137,7 +137,7 @@ struct PartsEditModeView: View {
                         }
                         else {
                             Button {
-                                newProgress[index][0] = progress[index][0]
+                                progress[index][0] = newProgress[index][0]
                             } label: {
                                 Image(systemName: "checkmark.circle.fill")
                                     .font(.largeTitle)
