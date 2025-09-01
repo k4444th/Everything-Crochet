@@ -8,6 +8,12 @@ struct DetailsEditModeView: View {
     @Binding var deadline: String
     @Binding var yarn: String
     
+    @State var newTechniques: String = ""
+    @State var newStartdate: String = ""
+    @State var newEnddate: String = ""
+    @State var newDeadline: String = ""
+    @State var newYarn: String = ""
+    
     @FocusState var techniquesFocused: Bool
     @FocusState var startdateFocused: Bool
     @FocusState var enddateFocused: Bool
@@ -25,66 +31,110 @@ struct DetailsEditModeView: View {
             
             LazyVGrid(columns: columns, alignment: .leading) {
                 Image(systemName: "hammer")
-                        .imageScale(.large)
-                        .foregroundColor(Color.accent).padding(.bottom, 8) .padding(.top, 4)
+                    .imageScale(.large)
+                    .foregroundColor(Color.accent).padding(.bottom, 8) .padding(.top, 4)
                 
                 HStack {
                     HStack {
                         Text("Techniques:")
-                        TextField("eg. Crochet", text: $techniques) .textFieldStyle(RoundedBorderTextFieldStyle()) .focused($techniquesFocused)
-                        Button {
-                            techniquesFocused = false
-                        } label: {
-                            Image(systemName: "checkmark.circle.fill")
-                                .font(.largeTitle)
-                                .foregroundColor(Color.appSecondary2)
+                        TextField("eg. Crochet", text: $newTechniques) .textFieldStyle(RoundedBorderTextFieldStyle()) .focused($techniquesFocused)
+                        if newTechniques == techniques {
+                            Button {
+                                techniquesFocused = false
+                            } label: {
+                                Image(systemName: "checkmark.circle.fill")
+                                    .font(.largeTitle)
+                                    .foregroundColor(Color.lighter)
+                            }
+                        }
+                        else {
+                            Button {
+                                techniques = newTechniques
+                            } label: {
+                                Image(systemName: "checkmark.circle.fill")
+                                    .font(.largeTitle)
+                                    .foregroundColor(Color.appSecondary2)
+                            }
                         }
                     }
                 }
                 
                 Image(systemName: "scissors")
-                        .imageScale(.large)
-                        .foregroundColor(Color.accent).padding(.bottom, 8) .padding(.top, 6)
+                    .imageScale(.large)
+                    .foregroundColor(Color.accent).padding(.bottom, 8) .padding(.top, 6)
                 
                 HStack {
                     HStack {
                         Text("Yarn:")
-                        TextField("eg. Cotton yarn", text: $yarn) .textFieldStyle(RoundedBorderTextFieldStyle()) .focused($yarnFocused)
-                        Button {
-                            yarnFocused = false
-                        } label: {
-                            Image(systemName: "checkmark.circle.fill")
-                                .font(.largeTitle)
-                                .foregroundColor(Color.appSecondary2)
+                        TextField("eg. Cotton yarn", text: $newYarn) .textFieldStyle(RoundedBorderTextFieldStyle()) .focused($yarnFocused)
+                        if newYarn == yarn {
+                            Button {
+                                yarnFocused = false
+                            } label: {
+                                Image(systemName: "checkmark.circle.fill")
+                                    .font(.largeTitle)
+                                    .foregroundColor(Color.lighter)
+                            }
+                        }
+                        else {
+                            Button {
+                                yarn = newYarn
+                            } label: {
+                                Image(systemName: "checkmark.circle.fill")
+                                    .font(.largeTitle)
+                                    .foregroundColor(Color.appSecondary2)
+                            }
                         }
                     }
                 }
                 
                 Image(systemName: "clock")
-                        .imageScale(.large)
-                        .foregroundColor(Color.accent).padding(.bottom, 8) .padding(.top, 6)
+                    .imageScale(.large)
+                    .foregroundColor(Color.accent).padding(.bottom, 8) .padding(.top, 6)
                 
                 VStack {
                     HStack {
                         Text("Startdate:")
-                        TextField("eg. Aug 28th 2025", text: $startdate) .textFieldStyle (RoundedBorderTextFieldStyle()) .focused($startdateFocused)
-                        Button {
-                            startdateFocused = false
-                        } label: {
-                            Image(systemName: "checkmark.circle.fill")
-                                .font(.largeTitle)
-                                .foregroundColor(Color.appSecondary2)
+                        TextField("eg. Aug 28th 2025", text: $newStartdate) .textFieldStyle (RoundedBorderTextFieldStyle()) .focused($startdateFocused)
+                        if newStartdate == startdate {
+                            Button {
+                                startdateFocused = false
+                            } label: {
+                                Image(systemName: "checkmark.circle.fill")
+                                    .font(.largeTitle)
+                                    .foregroundColor(Color.lighter)
+                            }
+                        }
+                        else {
+                            Button {
+                                startdate = newStartdate
+                            } label: {
+                                Image(systemName: "checkmark.circle.fill")
+                                    .font(.largeTitle)
+                                    .foregroundColor(Color.appSecondary2)
+                            }
                         }
                     }
                     HStack {
                         Text("Enddate:")
-                        TextField("eg. Sep 3rd 2025", text: $enddate) .textFieldStyle(RoundedBorderTextFieldStyle()) .focused($enddateFocused)
-                        Button {
-                            enddateFocused = false
-                        } label: {
-                            Image(systemName: "checkmark.circle.fill")
-                                .font(.largeTitle)
-                                .foregroundColor(Color.appSecondary2)
+                        TextField("eg. Sep 3rd 2025", text: $newEnddate) .textFieldStyle(RoundedBorderTextFieldStyle()) .focused($enddateFocused)
+                        if newEnddate == enddate {
+                            Button {
+                                enddateFocused = false
+                            } label: {
+                                Image(systemName: "checkmark.circle.fill")
+                                    .font(.largeTitle)
+                                    .foregroundColor(Color.lighter)
+                            }
+                        }
+                        else {
+                            Button {
+                                enddate = newEnddate
+                            } label: {
+                                Image(systemName: "checkmark.circle.fill")
+                                    .font(.largeTitle)
+                                    .foregroundColor(Color.appSecondary2)
+                            }
                         }
                     }
                 }
@@ -95,17 +145,34 @@ struct DetailsEditModeView: View {
                 
                 HStack {
                     Text("Deadline:")
-                    TextField("eg. Sep 1st 2025", text: $deadline) .textFieldStyle(RoundedBorderTextFieldStyle()) .focused($deadlineFocused)
-                    Button {
-                        deadlineFocused = false
-                    } label: {
-                        Image(systemName: "checkmark.circle.fill")
-                            .font(.largeTitle)
-                            .foregroundColor(Color.appSecondary2)
+                    TextField("eg. Sep 1st 2025", text: $newDeadline) .textFieldStyle(RoundedBorderTextFieldStyle()) .focused($deadlineFocused)
+                    if newDeadline == deadline {
+                        Button {
+                            deadlineFocused = false
+                        } label: {
+                            Image(systemName: "checkmark.circle.fill")
+                                .font(.largeTitle)
+                                .foregroundColor(Color.lighter)
+                        }
+                    }
+                    else {
+                        Button {
+                            deadline = newDeadline
+                        } label: {
+                            Image(systemName: "checkmark.circle.fill")
+                                .font(.largeTitle)
+                                .foregroundColor(Color.appSecondary2)
+                        }
                     }
                 }
             }
-        }.frame(maxWidth: .infinity, alignment: .leading) .padding(.bottom)
+        }.frame(maxWidth: .infinity, alignment: .leading) .padding(.bottom) .onAppear{
+            newTechniques = techniques
+            newStartdate = startdate
+            newEnddate = enddate
+            newDeadline = deadline
+            newYarn = yarn
+        }
     }
 }
 

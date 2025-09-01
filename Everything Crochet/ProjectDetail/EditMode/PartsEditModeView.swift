@@ -8,6 +8,7 @@ struct PartsEditModeView: View {
     @State var dontDelete: Bool = false
     @State var showError: [Bool] = []
     @State var newPart: String = ""
+    @State var newProgress: [[Int]] = []
     
     @FocusState private var newPartFocused: Bool
     @FocusState private var currentRowFocusedIndex: Int?
@@ -19,19 +20,25 @@ struct PartsEditModeView: View {
         return formatter
     }()
     
-    func bindingForProgress(row: Int, column: Int) -> Binding<Int> {
+    func bindingForNewProgress(row: Int, column: Int) -> Binding<Int> {
         Binding<Int>(
             get: {
-                guard progress.indices.contains(row),
-                      progress[row].indices.contains(column) else { return 0 }
-                return progress[row][column]
+                guard newProgress.indices.contains(row),
+                      newProgress[row].indices.contains(column) else { return 0 }
+                return newProgress[row][column]
             },
             set: { newValue in
-                guard progress.indices.contains(row),
-                      progress[row].indices.contains(column) else { return }
-                progress[row][column] = newValue
+                guard newProgress.indices.contains(row),
+                      newProgress[row].indices.contains(column) else { return }
+                newProgress[row][column] = newValue
             }
         )
+    }
+    
+    init(progress: Binding<[[Int]]>, parts: Binding<[String]>) {
+        self._progress = progress
+        self._parts = parts
+        self._newProgress = State(initialValue: Array(repeating: [0, 0], count: parts.wrappedValue.count))
     }
     
     var body: some View {
@@ -40,8 +47,11 @@ struct PartsEditModeView: View {
             
             FlowLayoutView(items: parts, spacing: 8) { index, part  in
                 TagView(tagName: part, color: Color.lighter, editMode: $editMode, info: false, onDelete: {
-                        if parts.count > 1 {
+                    if parts.count > 1 {
                             parts.remove(at: index)
+                            progress.remove(at: index)
+                            showError.remove(at: index)
+                            newProgress.remove(at: index)
                         }
                         else {
                             dontDelete = true
@@ -56,7 +66,7 @@ struct PartsEditModeView: View {
                         TagView(tagName: "Your project must consist of at least one part!", color: Color.appSecondary, editMode: $editMode, info: true, onDelete: {  })
                     }
                     else {
-                        TagView(tagName: "Dein projekt muss aus mindestens einem Teil bestehen!", color: Color.appSecondary, editMode: $editMode, info: true, onDelete: { })
+                        TagView(tagName: "Dein Projekt muss aus mindestens einem Teil bestehen!", color: Color.appSecondary, editMode: $editMode, info: true, onDelete: { })
                     }
                    
                     Spacer()
@@ -83,6 +93,7 @@ struct PartsEditModeView: View {
                     parts.append(newPart)
                     progress.append([0, 0])
                     showError.append(false)
+                    newProgress.append([0, 0])
                     newPartFocused = false
                     newPart = ""
                     dontDelete = false
@@ -102,25 +113,36 @@ struct PartsEditModeView: View {
                         Text("Current row:")
                         TextField(
                             "eg. 1",
-                            value: bindingForProgress(row: index, column: 0),
+                            value: bindingForNewProgress(row: index, column: 0),
                             formatter: formatter
                         )
                         .keyboardType(.numberPad)
                         .textFieldStyle(RoundedBorderTextFieldStyle())
                         .focused($currentRowFocusedIndex, equals: index)
                         
-                        Button {
-                            currentRowFocusedIndex = nil
-                            if progress[index][0] > progress[index][1] {
-                                showError[index] = true
-                            } else {
-                                showError[index] = false
-                                progress[index][0] = progress[index][0]
+                        if progress[index][0] == newProgress[index][0] {
+                            Button {
+                                currentRowFocusedIndex = nil
+                                if progress[index][0] > progress[index][1] {
+                                    showError[index] = true
+                                } else {
+                                    showError[index] = false
+                                    progress[index][0] = progress[index][0]
+                                }
+                            } label: {
+                                Image(systemName: "checkmark.circle.fill")
+                                    .font(.largeTitle)
+                                    .foregroundColor(Color.lighter)
                             }
-                        } label: {
-                            Image(systemName: "checkmark.circle.fill")
-                                .font(.largeTitle)
-                                .foregroundColor(Color.appSecondary2)
+                        }
+                        else {
+                            Button {
+                                newProgress[index][0] = progress[index][0]
+                            } label: {
+                                Image(systemName: "checkmark.circle.fill")
+                                    .font(.largeTitle)
+                                    .foregroundColor(Color.appSecondary2)
+                            }
                         }
                     }
 
@@ -128,25 +150,36 @@ struct PartsEditModeView: View {
                         Text("Total rows:")
                         TextField(
                             "eg. 10",
-                            value: bindingForProgress(row: index, column: 1),
+                            value: bindingForNewProgress(row: index, column: 1),
                             formatter: formatter
                         )
                         .keyboardType(.numberPad)
                         .textFieldStyle(RoundedBorderTextFieldStyle())
                         .focused($totalRowsFocusedIndex, equals: index)
                         
-                        Button {
-                            totalRowsFocusedIndex = nil
-                            if progress[index][0] > progress[index][1] {
-                                showError[index] = true
-                            } else {
-                                showError[index] = false
-                                progress[index][1] = progress[index][1]
+                        if progress[index][1] == newProgress[index][1] {
+                            Button {
+                                currentRowFocusedIndex = nil
+                                if progress[index][0] > progress[index][1] {
+                                    showError[index] = true
+                                } else {
+                                    showError[index] = false
+                                    progress[index][1] = progress[index][1]
+                                }
+                            } label: {
+                                Image(systemName: "checkmark.circle.fill")
+                                    .font(.largeTitle)
+                                    .foregroundColor(Color.lighter)
                             }
-                        } label: {
-                            Image(systemName: "checkmark.circle.fill")
-                                .font(.largeTitle)
-                                .foregroundColor(Color.appSecondary2)
+                        }
+                        else {
+                            Button {
+                                newProgress[index][1] = progress[index][1]
+                            } label: {
+                                Image(systemName: "checkmark.circle.fill")
+                                    .font(.largeTitle)
+                                    .foregroundColor(Color.appSecondary2)
+                            }
                         }
                     }
                     
@@ -168,6 +201,7 @@ struct PartsEditModeView: View {
         }
         .onAppear {
             showError = Array(repeating: false, count: parts.count)
+            newProgress = progress
         }
     }
 }
