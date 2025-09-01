@@ -160,7 +160,7 @@ struct PartsEditModeView: View {
                         
                         if newProgress[index][1] == progress[index][1] {
                             Button {
-                                currentRowFocusedIndex = nil
+                                totalRowsFocusedIndex = nil
                                 if progress[index][0] > progress[index][1] {
                                     showError[index] = true
                                 } else {
@@ -176,7 +176,7 @@ struct PartsEditModeView: View {
                         else {
                             Button {
                                 progress[index][1] = newProgress[index][1]
-                                currentRowFocusedIndex = nil
+                                totalRowsFocusedIndex = nil
                             } label: {
                                 Image(systemName: "checkmark.circle.fill")
                                     .font(.largeTitle)
