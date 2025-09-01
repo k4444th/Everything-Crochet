@@ -105,7 +105,6 @@ struct ProjectDetailView: View {
                         HStack {
                             Text("Project name:")
                             TextField( "eg. My first amigurumi", text: $newName )
-                            .keyboardType(.numberPad)
                             .textFieldStyle(RoundedBorderTextFieldStyle())
                             .focused($nameFocused)
                             
