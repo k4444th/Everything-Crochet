@@ -105,7 +105,7 @@ struct ProjectDetailView: View {
                         
                         PartsEditModeView(progress: $project.progress, parts: $project.parts)
                         
-                        PatternEditModeView(pdfUrl: project.patternLink).frame(height: 250)
+                        PatternEditModeView(patternData: $project.pattern).frame(height: 250)
                         
                         GalleryEditModeView(images: $project.progressPhotos)
                         
@@ -122,7 +122,7 @@ struct ProjectDetailView: View {
                         
                         RowCounterView(progress: $project.progress, parts: $project.parts).padding(.horizontal)
 
-                        PatternView(pdfUrl: project.patternLink).padding(.horizontal)
+                        PatternView(patternData: $project.pattern).padding(.horizontal)
                         
                         GalleryView(images: $project.progressPhotos)
                         
@@ -135,5 +135,5 @@ struct ProjectDetailView: View {
 }
 
 #Preview {
-    ProjectDetailView(editMode: .constant(false), project: .constant(Project(id: 0, name: "Checkered Tunesian Blanket", previewImage: Data(), tags: ["Blanket"], parts: ["Blanket"], techniques: "Tunesian Crochet", startdate: "27.08.2025", enddate: "-", deadline: "01.01.2026", yarn: "Lisa Premium (Gründl)", notes: "", patternLink: "https://www.antennahouse.com/hubfs/xsl-fo-sample/pdf/basic-link-1.pdf", progress: [[5, 20]], progressPhotos: [].compactMap { $0 })), currentContent: .constant(.project_detail))
+    ProjectDetailView(editMode: .constant(false), project: .constant(Project(id: 0, name: "Checkered Tunesian Blanket", previewImage: Data(), tags: ["Blanket"], parts: ["Blanket"], techniques: "Tunesian Crochet", startdate: "27.08.2025", enddate: "-", deadline: "01.01.2026", yarn: "Lisa Premium (Gründl)", notes: "", pattern: Data(), progress: [[5, 20]], progressPhotos: [].compactMap { $0 })), currentContent: .constant(.project_detail))
 }

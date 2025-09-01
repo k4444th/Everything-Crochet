@@ -12,7 +12,7 @@ struct Project : Identifiable, Codable, Equatable {
     var deadline: String = ""
     var yarn: String = ""
     var notes: String = ""
-    var patternLink: String = ""
+    var pattern: Data?
     var progress: [[Int]] = []
     var progressPhotos: [Data] = []
 }

@@ -2,22 +2,14 @@ import SwiftUI
 import PDFKit
 
 struct PDFKitView: UIViewRepresentable {
-    let pdfUrl: String
+    let pdfData: Data
 
     func makeUIView(context: Context) -> PDFView {
         let pdfView = PDFView()
         pdfView.autoScales = true
 
-        // PDF asynchron laden
-        if let url = URL(string: pdfUrl) {
-            DispatchQueue.global().async {
-                if let data = try? Data(contentsOf: url),
-                   let document = PDFDocument(data: data) {
-                    DispatchQueue.main.async {
-                        pdfView.document = document
-                    }
-                }
-            }
+        if let document = PDFDocument(data: pdfData) {
+            pdfView.document = document
         }
 
         return pdfView

@@ -9,7 +9,6 @@ struct PartsEditModeView: View {
     @State var showError: [Bool] = []
     @State var newPart: String = ""
     
-    // Vereinfachte Focus-States pro TextField-Typ
     @FocusState private var newPartFocused: Bool
     @FocusState private var currentRowFocusedIndex: Int?
     @FocusState private var totalRowsFocusedIndex: Int?

@@ -26,7 +26,7 @@ struct ProjectsView: View {
         deadline: "",
         yarn: "",
         notes: "",
-        patternLink: "",
+        pattern: Data(),
         progress: [[0, 10]],
         progressPhotos: []
     )
@@ -83,7 +83,7 @@ struct ProjectsView: View {
             deadline: "",
             yarn: "",
             notes: "",
-            patternLink: "",
+            pattern: Data(),
             progress: [[0, 10]],
             progressPhotos: []
         )
@@ -256,5 +256,5 @@ struct ProjectsView: View {
 }
 
 #Preview {
-    ProjectsView(currentContent: .constant(.contents), addMode: .constant(true), currentProject: .constant(Project(id: 0, name: "Checkered Tunesian Blanket", previewImage: Data(), tags: ["Blanket"], parts: ["Blanket"], techniques: "Tunesian Crochet", startdate: "27.08.2025", enddate: "-", deadline: "01.01.2026", yarn: "Lisa Premium (Gründl)", notes: "", patternLink: "https://www.antennahouse.com/hubfs/xsl-fo-sample/pdf/basic-link-1.pdf", progress: [[5, 20]], progressPhotos: [].compactMap { $0 })))
+    ProjectsView(currentContent: .constant(.contents), addMode: .constant(true), currentProject: .constant(Project(id: 0, name: "Checkered Tunesian Blanket", previewImage: Data(), tags: ["Blanket"], parts: ["Blanket"], techniques: "Tunesian Crochet", startdate: "27.08.2025", enddate: "-", deadline: "01.01.2026", yarn: "Lisa Premium (Gründl)", notes: "", pattern: Data(), progress: [[5, 20]], progressPhotos: [].compactMap { $0 })))
 }
