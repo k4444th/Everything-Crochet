@@ -194,7 +194,7 @@ struct ProjectsView: View {
                         Image(uiImage: uiImage)
                             .resizable()
                             .scaledToFill()
-                            .frame(width: .infinity, height: 100)
+                            .frame(height: 100) .frame(maxWidth: .infinity)
                             .clipShape(RoundedRectangle(cornerRadius: 12))
                     }
                 } .padding(.bottom)

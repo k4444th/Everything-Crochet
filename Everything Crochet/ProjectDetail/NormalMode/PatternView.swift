@@ -12,7 +12,7 @@ struct PatternView: View {
                 Text("Pattern:").font(.title2).padding(.vertical, 8)
                 
                 PDFKitView(pdfData: data)
-            } .frame(width: .infinity, height: 550) .padding(.bottom)
+            } .frame(height: 550) .frame(width: .infinity) .padding(.bottom)
         }
 
         else {

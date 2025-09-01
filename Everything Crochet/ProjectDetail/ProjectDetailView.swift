@@ -6,6 +6,9 @@ struct ProjectDetailView: View {
     @Binding var project: Project
     @Binding var currentContent: MainContent
     
+    @FocusState var nameFocused: Bool
+    
+    @State var newName: String = ""
     @State var selectedItem: PhotosPickerItem?
     
     func loadImage() {
@@ -95,10 +98,37 @@ struct ProjectDetailView: View {
                 }
 
                 
-                Text(project.name).font(.title).padding(.horizontal) .padding(.top)
+                
                 
                 if editMode {
                     VStack {
+                        HStack {
+                            Text("Project name:")
+                            TextField( "eg. My first amigurumi", text: $newName )
+                            .keyboardType(.numberPad)
+                            .textFieldStyle(RoundedBorderTextFieldStyle())
+                            .focused($nameFocused)
+                            
+                            if newName == project.name {
+                                Button {
+                                    project.name = newName
+                                } label: {
+                                    Image(systemName: "checkmark.circle.fill")
+                                        .font(.largeTitle)
+                                        .foregroundColor(Color.lighter)
+                                }
+                            }
+                            else {
+                                Button {
+                                    project.name = newName
+                                } label: {
+                                    Image(systemName: "checkmark.circle.fill")
+                                        .font(.largeTitle)
+                                        .foregroundColor(Color.appSecondary2)
+                                }
+                            }
+                        } .onAppear(perform: { newName = project.name }) .padding(.top)
+                        
                         TagsEditModeView(editMode: $editMode, tags: $project.tags)
                         
                         DetailsEditModeView(techniques: $project.techniques, startdate: $project.startdate, enddate: $project.enddate, deadline: $project.deadline, yarn: $project.yarn)
@@ -116,6 +146,11 @@ struct ProjectDetailView: View {
                 
                 else {
                     VStack {
+                        HStack {
+                            Text(project.name).font(.title).padding(.horizontal) .padding(.top)
+                            Spacer()
+                        }
+                        
                         TagsView(tags: $project.tags)
                         
                         DetailsView(techniques: $project.techniques, startdate: $project.startdate, enddate: $project.enddate, deadline: $project.deadline, yarn: $project.yarn).padding(.horizontal)
@@ -135,5 +170,5 @@ struct ProjectDetailView: View {
 }
 
 #Preview {
-    ProjectDetailView(editMode: .constant(false), project: .constant(Project(id: 0, name: "Checkered Tunesian Blanket", previewImage: Data(), tags: ["Blanket"], parts: ["Blanket"], techniques: "Tunesian Crochet", startdate: "27.08.2025", enddate: "-", deadline: "01.01.2026", yarn: "Lisa Premium (Gründl)", notes: "", pattern: Data(), progress: [[5, 20]], progressPhotos: [].compactMap { $0 })), currentContent: .constant(.project_detail))
+    ProjectDetailView(editMode: .constant(true), project: .constant(Project(id: 0, name: "Checkered Tunesian Blanket", previewImage: Data(), tags: ["Blanket"], parts: ["Blanket"], techniques: "Tunesian Crochet", startdate: "27.08.2025", enddate: "-", deadline: "01.01.2026", yarn: "Lisa Premium (Gründl)", notes: "", pattern: Data(), progress: [[5, 20]], progressPhotos: [].compactMap { $0 })), currentContent: .constant(.project_detail))
 }
