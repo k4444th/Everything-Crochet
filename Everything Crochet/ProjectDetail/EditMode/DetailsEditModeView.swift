@@ -49,6 +49,7 @@ struct DetailsEditModeView: View {
                         }
                         else {
                             Button {
+                                techniquesFocused = false
                                 techniques = newTechniques
                             } label: {
                                 Image(systemName: "checkmark.circle.fill")
@@ -78,6 +79,7 @@ struct DetailsEditModeView: View {
                         }
                         else {
                             Button {
+                                yarnFocused = false
                                 yarn = newYarn
                             } label: {
                                 Image(systemName: "checkmark.circle.fill")
@@ -107,6 +109,7 @@ struct DetailsEditModeView: View {
                         }
                         else {
                             Button {
+                                startdateFocused = false
                                 startdate = newStartdate
                             } label: {
                                 Image(systemName: "checkmark.circle.fill")
@@ -129,6 +132,7 @@ struct DetailsEditModeView: View {
                         }
                         else {
                             Button {
+                                enddateFocused = false
                                 enddate = newEnddate
                             } label: {
                                 Image(systemName: "checkmark.circle.fill")
@@ -157,6 +161,7 @@ struct DetailsEditModeView: View {
                     }
                     else {
                         Button {
+                            deadlineFocused = false
                             deadline = newDeadline
                         } label: {
                             Image(systemName: "checkmark.circle.fill")
