@@ -35,24 +35,50 @@ struct ProjectDetailView: View {
     var body: some View {
         ScrollView {
             VStack (alignment: .leading) {
-                AsyncImage(url: project.previewImage) { phase in
-                    if let image = phase.image {
-                        ZStack {
-                            image
-                                .resizable() .scaledToFill() .frame(maxWidth: .infinity) .frame(height: 150) .clipped()
-                            if editMode {
-                                Rectangle() .fill(Color.lighter) .opacity(0.3) .frame(maxWidth: .infinity) .frame(height: 150)
-                                
-                                PhotosPicker(selection: $selectedItem) {
-                                    Image(systemName: "pencil.circle.fill")
-                                        .font(.largeTitle)
-                                        .foregroundColor(Color.accent)
-                                        .padding()
-                                }
+                if let data = project.previewImage,
+                   let uiImage = UIImage(data: data) {
+                    ZStack {
+                        Image(uiImage: uiImage)
+                            .resizable()
+                            .scaledToFill()
+                            .frame(maxWidth: .infinity)
+                            .frame(height: 150)
+                            .clipped()
+                        
+                        if editMode {
+                            Rectangle()
+                                .fill(Color.lighter)
+                                .opacity(0.3)
+                                .frame(maxWidth: .infinity)
+                                .frame(height: 150)
+                            
+                            PhotosPicker(selection: $selectedItem) {
+                                Image(systemName: "pencil.circle.fill")
+                                    .font(.largeTitle)
+                                    .foregroundColor(Color.accent)
+                                    .padding()
+                            }
+                        }
+                    }
+                } else {
+                    ZStack {
+                        Rectangle()
+                            .fill(Color.gray.opacity(0.3))
+                            .frame(maxWidth: .infinity)
+                            .frame(height: 150)
+                            .overlay(Text("No Image"))
+                        
+                        if editMode {
+                            PhotosPicker(selection: $selectedItem) {
+                                Image(systemName: "plus.circle.fill")
+                                    .font(.largeTitle)
+                                    .foregroundColor(Color.accent)
+                                    .padding()
                             }
                         }
                     }
                 }
+
                 
                 Text(project.name).font(.title).padding(.horizontal) .padding(.top)
                 
@@ -94,5 +120,5 @@ struct ProjectDetailView: View {
 }
 
 #Preview {
-    ProjectDetailView(editMode: .constant(true), project: .constant(Project(id: 0, name: "Checkered Tunesian Blanket", previewImage: URL(string:  "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQhnqZpQ6W8HhJCtjrathdXW4djHWyp9itXIg&s")!, tags: ["Blanket"], parts: ["Blanket"], techniques: "Tunesian Crochet", startdate: "27.08.2025", enddate: "-", deadline: "01.01.2026", yarn: "Lisa Premium (Gründl)", notes: "", patternLink: "https://www.antennahouse.com/hubfs/xsl-fo-sample/pdf/basic-link-1.pdf", progress: [[5, 20]], progressPhotos: [URL(string: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQhnqZpQ6W8HhJCtjrathdXW4djHWyp9itXIg&s"), URL(string: "https://i.ytimg.com/vi/YM75duvKGFY/maxresdefault.jpg")].compactMap { $0 })))
+    ProjectDetailView(editMode: .constant(true), project: .constant(Project(id: 0, name: "Checkered Tunesian Blanket", previewImage: Data(), tags: ["Blanket"], parts: ["Blanket"], techniques: "Tunesian Crochet", startdate: "27.08.2025", enddate: "-", deadline: "01.01.2026", yarn: "Lisa Premium (Gründl)", notes: "", patternLink: "https://www.antennahouse.com/hubfs/xsl-fo-sample/pdf/basic-link-1.pdf", progress: [[5, 20]], progressPhotos: [URL(string: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQhnqZpQ6W8HhJCtjrathdXW4djHWyp9itXIg&s"), URL(string: "https://i.ytimg.com/vi/YM75duvKGFY/maxresdefault.jpg")].compactMap { $0 })))
 }

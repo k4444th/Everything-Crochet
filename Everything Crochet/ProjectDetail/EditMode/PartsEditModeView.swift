@@ -154,7 +154,13 @@ struct PartsEditModeView: View {
                     if showError.indices.contains(index), showError[index] {
                         HStack {
                             Spacer()
-                            TagView(tagName: "Current row must be ≤ total rows!", color: Color.appSecondary, editMode: $editMode, info: true)
+                            if Locale.current.language.languageCode?.identifier == "en" {
+                                TagView(tagName: "Current row must be smaller or equal to total rows!", color: Color.appSecondary, editMode: $editMode, info: true)
+                            }
+                            else {
+                                TagView(tagName: "Die aktuelle Reihe muss kleiner oder gleich der Gesamtreihenanzahl sein!", color: Color.appSecondary, editMode: $editMode, info: true)
+                            }
+                           
                             Spacer()
                         }
                     }

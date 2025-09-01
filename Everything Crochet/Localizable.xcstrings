@@ -193,6 +193,9 @@
         }
       }
     },
+    "eg. My first amigurumi" : {
+
+    },
     "eg. Sep 1st 2025" : {
       "localizations" : {
         "de" : {
@@ -218,7 +221,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Enddatum"
+            "value" : "Enddatum:"
           }
         }
       }
@@ -263,6 +266,9 @@
         }
       }
     },
+    "No Image" : {
+
+    },
     "Notes:" : {
       "localizations" : {
         "de" : {
@@ -303,6 +309,15 @@
         }
       }
     },
+    "Pick a photo" : {
+
+    },
+    "Preview image:" : {
+
+    },
+    "Project name:" : {
+
+    },
     "Row counter for:" : {
       "localizations" : {
         "de" : {
@@ -338,7 +353,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Startdatum"
+            "value" : "Startdatum:"
           }
         }
       }

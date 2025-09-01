@@ -3,7 +3,7 @@ import SwiftUI
 struct Project : Identifiable, Codable {
     var id: Int = -1
     var name: String = ""
-    var previewImage: URL? = nil
+    var previewImage: Data?
     var tags: [String] = []
     var parts: [String] = []
     var techniques: String = ""

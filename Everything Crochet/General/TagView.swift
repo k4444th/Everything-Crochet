@@ -19,9 +19,16 @@ struct TagView: View {
                             .foregroundColor(Color.appSecondary)
                     }
                 }
-                Text(tagName) .foregroundColor(Color.accent)
-                    .padding(.horizontal, 16)
-                    .padding(.vertical, 8)
+                if color == Color.lighter {
+                    Text(tagName) .foregroundColor(Color.accent)
+                        .padding(.horizontal, 16)
+                        .padding(.vertical, 8)
+                }
+                else {
+                    Text(tagName) .foregroundColor(Color.lighter)
+                        .padding(.horizontal, 16)
+                        .padding(.vertical, 8)
+                }
             } .background(
                 RoundedRectangle(cornerRadius: 20)
                     .fill(color)

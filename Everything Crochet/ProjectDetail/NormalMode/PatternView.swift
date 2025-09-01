@@ -16,6 +16,10 @@ struct PatternView: View {
 
         else {
             VStack (alignment: .center) {
+                HStack {
+                    Text("Pattern:").font(.title2).padding(.vertical, 8)
+                    Spacer()
+                }
                 Text("This project has no pattern yet")
                     .padding(.bottom)
                 Button {
