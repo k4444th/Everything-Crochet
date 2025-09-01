@@ -76,12 +76,7 @@ struct GalleryView: View {
                     Color.black.ignoresSafeArea()
                     VStack {
                         Spacer()
-                        if let uiImage = UIImage(data: images[index]) {
-                            Image(uiImage: uiImage)
-                                .resizable()
-                                .scaledToFit()
-                                .frame(maxWidth: .infinity, maxHeight: .infinity)
-                        }
+                        ZoomableImageView(data: images[index])
                         Spacer()
                     }
                     Button(action: { selectedImageIndex = nil }) {

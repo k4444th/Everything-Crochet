@@ -7,7 +7,6 @@ struct GalleryEditModeView: View {
     
     @State var selectedItem: PhotosPickerItem?
     @State var selectedImageIndex: Int?
-    @State var showFullScreen = false
     
     func loadImage() {
         Task {
@@ -72,38 +71,9 @@ struct GalleryEditModeView: View {
             }  .onChange(of: selectedItem, loadImage)
 
         }.frame(maxWidth: .infinity, alignment: .leading) .padding(.bottom)
-        
-        .fullScreenCover(isPresented: Binding(
-            get: { selectedImageIndex != nil && selectedImageIndex! < images.count },
-            set: { if !$0 { selectedImageIndex = nil } }
-        )) {
-            if let index = selectedImageIndex, index < images.count {
-                ZStack(alignment: .topTrailing) {
-                    Color.black.ignoresSafeArea()
-                    VStack {
-                        Spacer()
-                        if let uiImage = UIImage(data: images[index]) {
-                            Image(uiImage: uiImage)
-                                .resizable()
-                                .scaledToFit()
-                                .frame(maxWidth: .infinity, maxHeight: .infinity)
-                        }
-                        Spacer()
-                    }
-                    Button(action: {
-                        selectedImageIndex = nil
-                    }) {
-                        Image(systemName: "xmark.circle.fill")
-                            .font(.largeTitle)
-                            .foregroundColor(.white)
-                            .padding()
-                    }
-                }
-            }
-        }
     }
 }
 
 #Preview {
-    GalleryEditModeView(images: .constant([]), selectedImageIndex: 0, showFullScreen: false)
+    GalleryEditModeView(images: .constant([]), selectedImageIndex: 0)
 }
