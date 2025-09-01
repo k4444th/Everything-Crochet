@@ -56,7 +56,7 @@ struct PartsEditModeView: View {
                         else {
                             dontDelete = true
                         }
-                    })
+                    }) .id(part)
             }
             
             if dontDelete {

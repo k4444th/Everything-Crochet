@@ -15,7 +15,7 @@ struct TagsEditModeView: View {
             
             FlowLayoutView(items: tags, spacing: 8) { index, tag in
                 TagView( tagName: tag, color: Color.lighter, editMode: $editMode, info: false, onDelete: { tags.remove(at: index)}
-                )
+                ) .id(tag)
             }
             
             HStack {
