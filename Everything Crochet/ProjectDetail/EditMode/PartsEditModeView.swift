@@ -84,7 +84,6 @@ struct PartsEditModeView: View {
                     progress.append([0, 0])
                     showError.append(false)
                     newPartFocused = false
-                    print("Add part '\(newPart)'")
                     newPart = ""
                     dontDelete = false
                 } label: {
@@ -117,7 +116,6 @@ struct PartsEditModeView: View {
                             } else {
                                 showError[index] = false
                                 progress[index][0] = progress[index][0]
-                                print("Update progress of part \(parts[index]) to [\(progress[index][0]), \(progress[index][1])]")
                             }
                         } label: {
                             Image(systemName: "checkmark.circle.fill")
@@ -144,7 +142,6 @@ struct PartsEditModeView: View {
                             } else {
                                 showError[index] = false
                                 progress[index][1] = progress[index][1]
-                                print("Update progress of part \(parts[index]) to [\(progress[index][0]), \(progress[index][1])]")
                             }
                         } label: {
                             Image(systemName: "checkmark.circle.fill")

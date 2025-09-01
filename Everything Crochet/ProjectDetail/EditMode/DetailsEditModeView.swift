@@ -34,7 +34,6 @@ struct DetailsEditModeView: View {
                         TextField("eg. Crochet", text: $techniques) .textFieldStyle(RoundedBorderTextFieldStyle()) .focused($techniquesFocused)
                         Button {
                             techniquesFocused = false
-                            print("Edit technique '" + techniques + "'")
                         } label: {
                             Image(systemName: "checkmark.circle.fill")
                                 .font(.largeTitle)

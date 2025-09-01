@@ -53,6 +53,16 @@
         }
       }
     },
+    "Cancel" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zurück"
+          }
+        }
+      }
+    },
     "Create new project" : {
       "localizations" : {
         "de" : {
@@ -194,7 +204,14 @@
       }
     },
     "eg. My first amigurumi" : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "z.B. Mein erstes Amigurumi"
+          }
+        }
+      }
     },
     "eg. Sep 1st 2025" : {
       "localizations" : {
@@ -267,7 +284,14 @@
       }
     },
     "No Image" : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kein Bild"
+          }
+        }
+      }
     },
     "Notes:" : {
       "localizations" : {
@@ -310,13 +334,34 @@
       }
     },
     "Pick a photo" : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wähle ein Foto"
+          }
+        }
+      }
     },
     "Preview image:" : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vorschau-Bild:"
+          }
+        }
+      }
     },
     "Project name:" : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Projektname"
+          }
+        }
+      }
     },
     "Row counter for:" : {
       "localizations" : {

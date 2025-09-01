@@ -14,14 +14,14 @@ struct PatternEditModeView: View {
                     PDFKitView(pdfData: data)
                     Rectangle() .fill(Color.accent) .opacity(0.3) .frame(maxWidth: .infinity) .frame(maxHeight: .infinity)
                     Button {
-                        showPicker = true
+                        patternData = Data()
                     } label: {
-                        Image(systemName: "pencil.circle.fill")
+                        Image(systemName: "xmark.circle.fill")
                             .font(.largeTitle)
                             .foregroundColor(Color.lighter)
                             .padding()
                     }
-                }
+                }.frame(height: 150)
             }
             
             else {
@@ -36,7 +36,7 @@ struct PatternEditModeView: View {
                                 .fill(Color.appPrimary)
                         )
                     }
-                } .frame(maxWidth: .infinity)
+                } .frame(maxWidth: .infinity) .frame(height: 80)
             }
             
         }.frame(maxWidth: .infinity, alignment: .leading) .padding(.bottom)

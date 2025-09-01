@@ -28,7 +28,6 @@ struct RowCounterView: View {
                 Spacer()
                 Button {
                     if progress[currentPart][0] > 0 {
-                        print("Update row counter for " + parts[currentPart] + " by -1")
                         progress[currentPart][0] -= 1
                     }
                 } label: {
@@ -44,7 +43,6 @@ struct RowCounterView: View {
                 
                 Button {
                     if progress[currentPart][0] < progress[currentPart][1] {
-                        print("Update row counter for " + parts[currentPart] + " by +1")
                         progress[currentPart][0] += 1
                     }
                 } label: {
@@ -54,9 +52,7 @@ struct RowCounterView: View {
                         .foregroundColor(.appSecondary2)
                 }
                 Spacer()
-            } .padding(.top)  .onChange(of: progress, {
-                print(progress)
-            })
+            } .padding(.top)
             
         }.frame(maxWidth: .infinity) .padding(.bottom) .onAppear(perform: { currentPartString = parts[currentPart] }).onChange(of: currentPartString, { currentPart = parts.firstIndex(of: currentPartString) ?? 0})
     }

@@ -33,7 +33,6 @@ struct TagsEditModeView: View {
                     newTagFocused = false
                     if newTag.count > 0 {
                         tags.append(newTag)
-                        print("Add tag '" + newTag + "'")
                     }
                     
                     newTag = ""

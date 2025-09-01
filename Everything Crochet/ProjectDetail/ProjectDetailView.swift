@@ -105,7 +105,7 @@ struct ProjectDetailView: View {
                         
                         PartsEditModeView(progress: $project.progress, parts: $project.parts)
                         
-                        PatternEditModeView(patternData: $project.pattern).frame(height: 250)
+                        PatternEditModeView(patternData: $project.pattern)
                         
                         GalleryEditModeView(images: $project.progressPhotos)
                         

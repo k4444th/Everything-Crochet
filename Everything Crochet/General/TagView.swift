@@ -14,7 +14,6 @@ struct TagView: View {
             HStack (spacing: 0) {
                 if editMode && !info {
                     Button  {
-                        print("Delete tag '" + tagName + "'")
                         onDelete?() 
                     } label: {
                         Image(systemName: "xmark.circle.fill")
