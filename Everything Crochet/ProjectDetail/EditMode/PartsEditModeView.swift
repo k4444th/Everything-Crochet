@@ -157,7 +157,7 @@ struct PartsEditModeView: View {
                         .textFieldStyle(RoundedBorderTextFieldStyle())
                         .focused($totalRowsFocusedIndex, equals: index)
                         
-                        if progress[index][1] == newProgress[index][1] {
+                        if newProgress[index][1] == progress[index][1] {
                             Button {
                                 currentRowFocusedIndex = nil
                                 if progress[index][0] > progress[index][1] {
@@ -174,7 +174,7 @@ struct PartsEditModeView: View {
                         }
                         else {
                             Button {
-                                newProgress[index][1] = progress[index][1]
+                                progress[index][1] = newProgress[index][1]
                             } label: {
                                 Image(systemName: "checkmark.circle.fill")
                                     .font(.largeTitle)
