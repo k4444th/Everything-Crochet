@@ -33,7 +33,6 @@ struct ZoomableImageView: View {
                             }
                     )
                 )
-                .animation(.spring(), value: scale)
         }
     }
 }
