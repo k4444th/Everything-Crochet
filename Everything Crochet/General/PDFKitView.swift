@@ -15,5 +15,9 @@ struct PDFKitView: UIViewRepresentable {
         return pdfView
     }
 
-    func updateUIView(_ uiView: PDFView, context: Context) {}
+    func updateUIView(_ uiView: PDFView, context: Context) {
+        if let document = PDFDocument(data: pdfData) {
+            uiView.document = document
+        }
+    }
 }
