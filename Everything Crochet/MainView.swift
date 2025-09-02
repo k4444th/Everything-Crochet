@@ -5,6 +5,7 @@ enum MainContent: CaseIterable{
     case projects
     case project_detail
     case patterns
+    case pattern_detail
     case stash
     case wips
     case stitches
@@ -18,8 +19,9 @@ enum MainContent: CaseIterable{
         switch self {
             case .contents: return Locale.current.language.languageCode?.identifier == "en" ? "Contents" : "Übersicht"
             case .projects: return Locale.current.language.languageCode?.identifier == "en" ? "Projects" : "Projekte"
-            case .project_detail: return Locale.current.language.languageCode?.identifier == "en" ? "(Project Details)" : "(Projektdetails)"
+            case .project_detail: return Locale.current.language.languageCode?.identifier == "en" ? "(Project Details)" : "(Projekt details)"
             case .patterns: return Locale.current.language.languageCode?.identifier == "en" ? "Patterns" : "Anleitungen"
+            case .pattern_detail: return Locale.current.language.languageCode?.identifier == "en" ? "(Anleitungsdetails)" : "(Pattern details)"
             case .stash: return Locale.current.language.languageCode?.identifier == "en" ? "Stash" : "Lager"
             case .wips: return Locale.current.language.languageCode?.identifier == "en" ? "WIPs" : "WIPs"
             case .stitches: return Locale.current.language.languageCode?.identifier == "en" ? "Stitches" : "Maschen"
@@ -37,7 +39,9 @@ struct MainView: View {
     
     @State var presentSideMenu = false
     @State var currentContent: MainContent = .contents
+    
     @State var currentProject: Project = Project()
+    @State var currentPattern: Pattern = Pattern()
    
     @State var editModeVisible: Bool = false
     @State var editMode: Bool = false
@@ -74,12 +78,19 @@ struct MainView: View {
                                 addIconVisible = false
                             }
                     case .patterns:
-                        NothingHereYetView().frame(maxWidth: .infinity, maxHeight: .infinity) .onAppear {
+                        PatternsView(currentContent: $currentContent, addMode: $addMode, currentPattern: $currentPattern).frame(maxWidth: .infinity, maxHeight: .infinity) .onAppear {
                                 editMode = false
                                 addMode = false
                                 editModeVisible = false
-                                addIconVisible = false
+                                addIconVisible = true
                             }
+                case .pattern_detail:
+                    NothingHereYetView().frame(maxWidth: .infinity, maxHeight: .infinity).onAppear {
+                            editMode = false
+                            addMode = false
+                            editModeVisible = false
+                            addIconVisible = false
+                        }
                     case .stash:
                         NothingHereYetView().frame(maxWidth: .infinity, maxHeight: .infinity).onAppear {
                                 editMode = false

@@ -83,6 +83,16 @@
         }
       }
     },
+    "Create new pattern" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Neue Anleitung erstellen"
+          }
+        }
+      }
+    },
     "Create new project" : {
       "localizations" : {
         "de" : {
@@ -93,12 +103,32 @@
         }
       }
     },
+    "Create pattern" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Anleitung erstellen"
+          }
+        }
+      }
+    },
     "Create project" : {
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Projekt erstellen"
+          }
+        }
+      }
+    },
+    "Create your first pattern!" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Erstelle deine erste Anleitung!"
           }
         }
       }
@@ -383,12 +413,42 @@
         }
       }
     },
+    "Pattern name:" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Name der Anleitung:"
+          }
+        }
+      }
+    },
+    "Pattern type:" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Typ der Anleitung:"
+          }
+        }
+      }
+    },
     "Pattern:" : {
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Anleitung:"
+          }
+        }
+      }
+    },
+    "PatternType" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "AnleitungsTyp"
           }
         }
       }

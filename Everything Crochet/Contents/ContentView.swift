@@ -22,6 +22,7 @@ struct ContentView: View {
                                 case .projects: return "folder"
                                 case .project_detail: return ""
                                 case .patterns: return "square.grid.2x2"
+                                case .pattern_detail: return ""
                                 case .stash: return "shippingbox"
                                 case .wips: return "hammer"
                                 case .stitches: return "scissors"
