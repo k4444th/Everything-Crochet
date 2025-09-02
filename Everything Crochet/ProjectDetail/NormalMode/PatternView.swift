@@ -57,17 +57,17 @@ struct PatternView: View {
 
                                 let data = try Data(contentsOf: destURL)
                                 patternData = data
-                                print("PDF geladen, Größe: \(data.count) bytes")
+                                print("PDF loaded, size: \(data.count) bytes")
                             } catch {
-                                print("Fehler beim Kopieren oder Laden der PDF: \(error.localizedDescription)")
+                                print("Error when copying or loading PDF: \(error.localizedDescription)")
                             }
 
                         } else {
-                            print("Keine Zugriffsrechte auf die ausgewählte Datei.")
+                            print("No access rights for given file.")
                         }
 
                     case .failure(let error):
-                        print("Fehler beim Import: \(error.localizedDescription)")
+                        print("Error on import: \(error.localizedDescription)")
                     }
                 }
         }

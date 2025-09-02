@@ -10,7 +10,7 @@ struct GalleryEditModeView: View {
     
     func loadImage() {
         Task {
-            guard let imageData = try await selectedItem?.loadTransferable(type: Data.self) else {  return }
+            try await selectedItem?.loadTransferable(type: Data.self)
         }
     }
     
