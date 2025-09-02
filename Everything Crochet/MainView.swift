@@ -148,7 +148,7 @@ struct MainView: View {
                let decoded = try? JSONDecoder().decode(Settings.self, from: data) {
                 settings = decoded
             } else {
-                if let encoded = try? JSONEncoder().encode(Settings(appearance: .system, language: "en")) {
+                if let encoded = try? JSONEncoder().encode(Settings(appearance: .system, language: .en)) {
                     UserDefaults.standard.set(encoded, forKey: "settings")
                 }
             }
