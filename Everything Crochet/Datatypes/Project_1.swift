@@ -1,12 +1,11 @@
 import SwiftUI
 
-struct Project : Identifiable, Codable, Equatable {
+struct Project_1 : Identifiable, Codable, Equatable {
     var id: Int = -1
     var name: String = ""
     var previewImage: Data?
     var tags: [String] = []
     var parts: [String] = []
-    var selectedPart: Int = 0
     var techniques: String = ""
     var startdate: String = ""
     var enddate: String = ""

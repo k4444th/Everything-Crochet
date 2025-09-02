@@ -36,22 +36,42 @@ struct ProjectsView: View {
         do {
             return try JSONDecoder().decode([Project].self, from: data)
         } catch {
-            print("Error when encoding: \(error)")
-
-            if let rawArray = try? JSONSerialization.jsonObject(with: data) as? [Any] {
-                for (index, element) in rawArray.enumerated() {
-                    do {
-                        let elementData = try JSONSerialization.data(withJSONObject: element)
-                        _ = try JSONDecoder().decode(Project.self, from: elementData)
-                    } catch {
-                        print("Invalid object at index \(index): \(element)")
-                    }
+            print("Error when decoding as Project(): \(error)")
+            do {
+                let oldProjects = try JSONDecoder().decode([Project_1].self, from: data)
+                print("Found old project format, converting...")
+                
+                let converted = oldProjects.map { old in
+                    Project(
+                        id: old.id,
+                        name: old.name,
+                        previewImage: old.previewImage,
+                        tags: old.tags,
+                        parts: old.parts,
+                        selectedPart: 0,
+                        techniques: old.techniques,
+                        startdate: old.startdate,
+                        enddate: old.enddate,
+                        deadline: old.deadline,
+                        yarn: old.yarn,
+                        notes: old.notes,
+                        pattern: old.pattern,
+                        progress: old.progress,
+                        progressPhotos: old.progressPhotos
+                    )
                 }
+                
+                if let encoded = try? JSONEncoder().encode(converted) {
+                    UserDefaults.standard.set(encoded, forKey: "projects")
+                }
+                
+                return converted
+            } catch {
+                return []
             }
-            return []
         }
     }
-    
+
     func createProject() {
         if newProject.name.count > 0 {
             var projects: [Project] = []

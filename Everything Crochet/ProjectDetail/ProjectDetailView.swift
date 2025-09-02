@@ -154,7 +154,7 @@ struct ProjectDetailView: View {
                         
                         DetailsView(techniques: $project.techniques, startdate: $project.startdate, enddate: $project.enddate, deadline: $project.deadline, yarn: $project.yarn).padding(.horizontal)
                         
-                        RowCounterView(progress: $project.progress, parts: $project.parts).padding(.horizontal)
+                        RowCounterView(progress: $project.progress, parts: $project.parts, currentPart: $project.selectedPart).padding(.horizontal)
 
                         PatternView(patternData: $project.pattern).padding(.horizontal)
                         

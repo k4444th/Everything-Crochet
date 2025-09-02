@@ -4,8 +4,8 @@ struct RowCounterView: View {
     
     @Binding var progress: [[Int]]
     @Binding var parts: [String]
+    @Binding var currentPart: Int
     
-    @State var currentPart: Int = 0
     @State var currentPartString: String = ""
 
     var body: some View {
@@ -59,5 +59,5 @@ struct RowCounterView: View {
 }
 
 #Preview {
-    RowCounterView(progress: .constant([[5, 20], [6, 28]]), parts: .constant(["Body", "Head"]))
+    RowCounterView(progress: .constant([[5, 20], [6, 28]]), parts: .constant(["Body", "Head"]), currentPart: .constant(0))
 }
