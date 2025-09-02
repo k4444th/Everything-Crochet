@@ -13,7 +13,7 @@ struct SettingsView: View {
                 Text("Appearance:")
                 Picker("Appearance", selection: $settings.appearance) {
                     ForEach(Appearance.allCases, id: \.self) { mode in
-                        Text(mode.rawValue.capitalized).tag(mode)
+                        Text(mode.name).tag(mode)
                     }
                 } .onChange(of: settings.language, {oldValue, newValue in UserDefaults.standard.set([newValue.rawValue], forKey: "AppleLanguages")
                     UserDefaults.standard.synchronize()
@@ -26,7 +26,7 @@ struct SettingsView: View {
                 Text("Language:")
                 Picker("Language", selection: $settings.language) {
                     ForEach(Language.allCases, id: \.self) { mode in
-                        Text(mode.name.capitalized).tag(mode)
+                        Text(mode.name).tag(mode)
                     }
                 }
                 Spacer()
@@ -34,10 +34,10 @@ struct SettingsView: View {
             HStack {
                 Spacer()
                 if restartLanguage {
-                    if Locale.current.language.languageCode?.identifier == "en" {
+                    if settings.language.rawValue == "en" {
                         TagView(tagName: "Please restart the application to apply the changes!", color: Color.appSecondary, editMode: .constant(false), info: true, onDelete: {  })
                     }
-                    else {
+                    else if settings.language.rawValue == "de" {
                         TagView(tagName: "Bitte starte die App neu, um deine Änderungen anzuwenden!", color: Color.appSecondary, editMode: .constant(false), info: true, onDelete: { })
                     }
                 }

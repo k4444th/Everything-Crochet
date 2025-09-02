@@ -12,6 +12,14 @@ enum Appearance: String, Codable, CaseIterable {
             case .system: return nil
         }
     }
+    
+    var name: String {
+        switch self {
+            case .light: return Locale.current.language.languageCode?.identifier == "en" ? "Light" : "Hell"
+            case .dark: return Locale.current.language.languageCode?.identifier == "en" ? "Dark" : "Dunkel"
+            case .system: return Locale.current.language.languageCode?.identifier == "en" ? "System" : "System"
+        }
+    }
 }
 
 enum Language: String, Codable, CaseIterable {
