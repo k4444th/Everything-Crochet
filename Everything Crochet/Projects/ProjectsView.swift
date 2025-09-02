@@ -31,6 +31,27 @@ struct ProjectsView: View {
         progressPhotos: []
     )
     
+    func decodeProjects(from data: Data?) -> [Project] {
+        guard let data = data else { return [] }
+        do {
+            return try JSONDecoder().decode([Project].self, from: data)
+        } catch {
+            print("Error when encoding: \(error)")
+
+            if let rawArray = try? JSONSerialization.jsonObject(with: data) as? [Any] {
+                for (index, element) in rawArray.enumerated() {
+                    do {
+                        let elementData = try JSONSerialization.data(withJSONObject: element)
+                        _ = try JSONDecoder().decode(Project.self, from: elementData)
+                    } catch {
+                        print("Invalid object at index \(index): \(element)")
+                    }
+                }
+            }
+            return []
+        }
+    }
+    
     func createProject() {
         if newProject.name.count > 0 {
             var projects: [Project] = []
@@ -224,19 +245,17 @@ struct ProjectsView: View {
         else {
             ScrollView {
                 VStack {
-                    if let projectData,
-                       let decodedProjects = try? JSONDecoder().decode([Project].self, from: projectData),
-                       !decodedProjects.isEmpty {
-                        
-                        ForEach(decodedProjects, id: \.id) { project in
-                            ProjectCardView(
-                                currentContent: $currentContent,
-                                project: .constant(project),
-                                currentProject: $currentProject
-                            )
-                        }
-                        
-                    } else {
+                    let decodedProjects = decodeProjects(from: projectData)
+
+                    if !decodedProjects.isEmpty {
+                           ForEach(decodedProjects, id: \.id) { project in
+                               ProjectCardView(
+                                   currentContent: $currentContent,
+                                   project: .constant(project),
+                                   currentProject: $currentProject
+                               )
+                           }
+                       } else {
                         Button {
                             addMode = true
                         } label: {
