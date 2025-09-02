@@ -33,6 +33,8 @@ enum MainContent: CaseIterable{
 }
 
 struct MainView: View {
+    @State var settings: Settings = Settings()
+    
     @State var presentSideMenu = false
     @State var currentContent: MainContent = .contents
     @State var currentProject: Project = Project()
@@ -128,7 +130,7 @@ struct MainView: View {
                             addIconVisible = false
                         }
                 case .settings:
-                    NothingHereYetView().frame(maxWidth: .infinity, maxHeight: .infinity).onAppear {
+                    SettingsView(settings: $settings).frame(maxWidth: .infinity, maxHeight: .infinity).onAppear {
                             editMode = false
                             addMode = false
                             editModeVisible = false
@@ -141,7 +143,16 @@ struct MainView: View {
                 isShowing: $presentSideMenu,
                 content: AnyView(SideMenuContentView(presentSideMenu: $presentSideMenu, currentContent: $currentContent))
             )
-        }
+        } .onAppear {
+            if let data = UserDefaults.standard.data(forKey: "settings"),
+               let decoded = try? JSONDecoder().decode(Settings.self, from: data) {
+                settings = decoded
+            } else {
+                if let encoded = try? JSONEncoder().encode(Settings(appearance: .system, language: "en")) {
+                    UserDefaults.standard.set(encoded, forKey: "settings")
+                }
+            }
+        } .preferredColorScheme(settings.appearance.colorScheme)
     }
 }
 
