@@ -2,6 +2,7 @@ import SwiftUI
 
 struct NotesView: View {
     
+    @State var newText: String = ""
     @Binding var text: String
     
     @FocusState var notesFocused: Bool
@@ -14,16 +15,17 @@ struct NotesView: View {
                 Spacer()
                 
                 if notesFocused {
-                    Button("Submit") {
+                    Button("Save") {
                         notesFocused = false
+                        text = newText
                     }
                 }
             }
             
-            TextField("Let your ideas unravel here...", text: $text,  axis: .vertical)
+            TextField("Let your ideas unravel here...", text: $newText,  axis: .vertical)
                 .lineLimit(5...10) .focused($notesFocused)
             
-        } .padding(.bottom)
+        } .padding(.bottom) .onAppear(perform: { newText = text })
     }
 }
 
