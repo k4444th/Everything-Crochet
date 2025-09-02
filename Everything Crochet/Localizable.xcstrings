@@ -434,7 +434,14 @@
       }
     },
     "Save" : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sichern"
+          }
+        }
+      }
     },
     "Selected part" : {
       "localizations" : {

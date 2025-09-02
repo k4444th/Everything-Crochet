@@ -15,15 +15,33 @@ struct NotesView: View {
                 Spacer()
                 
                 if notesFocused {
-                    Button("Save") {
-                        notesFocused = false
-                        text = newText
+                    if text == newText {
+                        Button{
+                            notesFocused = false
+                            text = newText
+                        } label: {
+                            Text("Save") .padding(12) .tint(Color.accent) .background(
+                                RoundedRectangle(cornerRadius: 20)
+                                    .fill(Color.lighter)
+                            )
+                        }
+                    }
+                    else {
+                        Button{
+                            notesFocused = false
+                            text = newText
+                        } label: {
+                            Text("Save") .padding(12) .tint(Color.lighter) .background(
+                                RoundedRectangle(cornerRadius: 20)
+                                    .fill(Color.appSecondary)
+                            )
+                        }
                     }
                 }
             }
             
             TextField("Let your ideas unravel here...", text: $newText,  axis: .vertical)
-                .lineLimit(5...10) .focused($notesFocused)
+                .lineLimit(5...50) .focused($notesFocused)
             
         } .padding(.bottom) .onAppear(perform: { newText = text })
     }
