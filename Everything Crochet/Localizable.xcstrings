@@ -323,6 +323,16 @@
         }
       }
     },
+    "Image pattern" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bild-Anleitung"
+          }
+        }
+      }
+    },
     "Language" : {
       "localizations" : {
         "de" : {
@@ -453,6 +463,16 @@
         }
       }
     },
+    "PDF pattern" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "PDF Anleitung"
+          }
+        }
+      }
+    },
     "Pick a photo" : {
       "localizations" : {
         "de" : {
@@ -529,6 +549,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Beginne, deinen Fortschritt festzuhalten!"
+          }
+        }
+      }
+    },
+    "Start creating your new pattern here..." : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Erstelle deine neue Anleitung hier…"
           }
         }
       }

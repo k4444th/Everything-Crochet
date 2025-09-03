@@ -21,7 +21,7 @@ enum MainContent: CaseIterable{
             case .projects: return Locale.current.language.languageCode?.identifier == "en" ? "Projects" : "Projekte"
             case .project_detail: return Locale.current.language.languageCode?.identifier == "en" ? "(Project Details)" : "(Projekt details)"
             case .patterns: return Locale.current.language.languageCode?.identifier == "en" ? "Patterns" : "Anleitungen"
-            case .pattern_detail: return Locale.current.language.languageCode?.identifier == "en" ? "(Anleitungsdetails)" : "(Pattern details)"
+            case .pattern_detail: return Locale.current.language.languageCode?.identifier == "en" ? "(Pattern Details)" : "(Anleitungsdetails)"
             case .stash: return Locale.current.language.languageCode?.identifier == "en" ? "Stash" : "Lager"
             case .wips: return Locale.current.language.languageCode?.identifier == "en" ? "WIPs" : "WIPs"
             case .stitches: return Locale.current.language.languageCode?.identifier == "en" ? "Stitches" : "Maschen"
@@ -85,10 +85,10 @@ struct MainView: View {
                                 addIconVisible = true
                             }
                 case .pattern_detail:
-                    NothingHereYetView().frame(maxWidth: .infinity, maxHeight: .infinity).onAppear {
+                    PatternDetailView(editMode: $editMode, pattern: $currentPattern, currentContent: $currentContent).frame(maxWidth: .infinity, maxHeight: .infinity).onAppear {
                             editMode = false
                             addMode = false
-                            editModeVisible = false
+                            editModeVisible = true
                             addIconVisible = false
                         }
                     case .stash:

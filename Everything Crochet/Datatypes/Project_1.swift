@@ -6,6 +6,7 @@ struct Project_1 : Identifiable, Codable, Equatable {
     var previewImage: Data?
     var tags: [String] = []
     var parts: [String] = []
+    var selectedPart: Int = 0
     var techniques: String = ""
     var startdate: String = ""
     var enddate: String = ""

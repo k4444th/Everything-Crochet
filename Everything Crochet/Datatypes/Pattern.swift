@@ -6,9 +6,10 @@ struct Pattern : Identifiable, Codable, Equatable {
     var type: PatternType = .pdf
     var previewImage: Data?
     var tags: [String] = []
-    var techniques: String = ""
     var notes: String = ""
-    var pattern: Data?
+    var pdfPattern: Data?
+    var imagePattern: [Data] = []
+    var writtenPattern: String = ""
 }
 
 enum PatternType: String, Codable, CaseIterable {

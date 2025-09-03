@@ -8,9 +8,8 @@ struct PatternsView: View {
     @Binding var addMode: Bool
     @Binding var currentPattern: Pattern
     
-    
-    @State private var selectedItem: PhotosPickerItem?
-    @State private var selectedImage: UIImage?
+    @State var selectedItem: PhotosPickerItem?
+    @State var selectedImage: UIImage?
     
     @State var showError: Bool = false
     
@@ -19,9 +18,10 @@ struct PatternsView: View {
         name: "",
         previewImage: Data(),
         tags: [],
-        techniques: "",
         notes: "",
-        pattern: Data()
+        pdfPattern: Data(),
+        imagePattern: [],
+        writtenPattern: ""
     )
     
     func decodePatterns(from data: Data?) -> [Pattern] {
@@ -78,9 +78,10 @@ struct PatternsView: View {
             name: "",
             previewImage: nil,
             tags: [],
-            techniques: "",
             notes: "",
-            pattern: Data(),
+            pdfPattern: Data(),
+            imagePattern: [],
+            writtenPattern: ""
         )
     }
     
