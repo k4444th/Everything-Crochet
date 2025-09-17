@@ -7,12 +7,10 @@ enum MainContent: CaseIterable{
     case patterns
     case pattern_detail
     case stash
-    case wips
     case stitches
     case wishlist
     case statistics
     case achievements
-    case timeline
     case settings
     
     var title: String {
@@ -23,12 +21,10 @@ enum MainContent: CaseIterable{
             case .patterns: return Locale.current.language.languageCode?.identifier == "en" ? "Patterns" : "Anleitungen"
             case .pattern_detail: return Locale.current.language.languageCode?.identifier == "en" ? "(Pattern Details)" : "(Anleitungsdetails)"
             case .stash: return Locale.current.language.languageCode?.identifier == "en" ? "Stash" : "Lager"
-            case .wips: return Locale.current.language.languageCode?.identifier == "en" ? "WIPs" : "WIPs"
             case .stitches: return Locale.current.language.languageCode?.identifier == "en" ? "Stitches" : "Maschen"
             case .wishlist: return Locale.current.language.languageCode?.identifier == "en" ? "Wishlist" : "Wunschliste"
             case .statistics: return Locale.current.language.languageCode?.identifier == "en" ? "Statistics" : "Statistik"
             case .achievements: return Locale.current.language.languageCode?.identifier == "en" ? "Achievements" : "Erfolge"
-            case .timeline: return Locale.current.language.languageCode?.identifier == "en" ? "Timeline" : "Zeitleiste"
             case .settings: return Locale.current.language.languageCode?.identifier == "en" ? "Settings" : "Einstellungen"
         }
     }
@@ -98,13 +94,6 @@ struct MainView: View {
                                 editModeVisible = false
                                 addIconVisible = false
                             }
-                    case .wips:
-                        NothingHereYetView().frame(maxWidth: .infinity, maxHeight: .infinity).onAppear {
-                                editMode = false
-                                addMode = false
-                                editModeVisible = false
-                                addIconVisible = false
-                            }
                     case .stitches:
                         NothingHereYetView().frame(maxWidth: .infinity, maxHeight: .infinity).onAppear {
                                 editMode = false
@@ -133,13 +122,6 @@ struct MainView: View {
                                 editModeVisible = false
                                 addIconVisible = false
                             }
-                case .timeline:
-                    NothingHereYetView().frame(maxWidth: .infinity, maxHeight: .infinity).onAppear {
-                            editMode = false
-                            addMode = false
-                            editModeVisible = false
-                            addIconVisible = false
-                        }
                 case .settings:
                     SettingsView(settings: $settings).frame(maxWidth: .infinity, maxHeight: .infinity).onAppear {
                             editMode = false

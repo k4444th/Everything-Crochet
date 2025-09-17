@@ -24,12 +24,10 @@ struct ContentView: View {
                                 case .patterns: return "square.grid.2x2"
                                 case .pattern_detail: return ""
                                 case .stash: return "shippingbox"
-                                case .wips: return "hammer"
                                 case .stitches: return "scissors"
                                 case .wishlist: return "heart"
                                 case .statistics: return "chart.bar"
                                 case .achievements: return "star"
-                                case .timeline: return "clock"
                                 case .settings: return "gearshape"
                             }
                         }
